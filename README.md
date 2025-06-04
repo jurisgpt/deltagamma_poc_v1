@@ -1,8 +1,17 @@
 # EveryCure Data Science Challenge
-The data files to be used in this challenge should be downloaded from here: https://drive.google.com/drive/folders/1swCsdUeYnMYLIEKYZ5ed1YIU0X1vyt9u?usp=sharing
+## Data
+The data files are provided in the `data/` folder.
+If you need to (re)download them, run:
+```bash
+mkdir -p data
+gdown --folder https://drive.google.com/drive/folders/1swCsdUeYnMYLIEKYZ5ed1YIU0X1vyt9u -O data
+```
 
-Installation of required packages in requirements.txt
+## Installation
+Install the required packages:
+```bash
 pip install -r requirements.txt
+```
 
 
 The task is to design and implement a pipeline that generates graph-based embeddings for a biological knowledge graph and uses them to predict potential drug-disease associations. This task has been split into three subtasks:
