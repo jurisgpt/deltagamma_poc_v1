@@ -1,109 +1,121 @@
 #!/usr/bin/env python3
-import torch
-from torch_geometric.nn import GATConv
-from torch_geometric.data import Data
-import pandas as pd
+"""
+Train a graph autoencoder (using GAT) to generate node embeddings and save them to CSV.
+"""
 import argparse
+import torch
+import torch.nn.functional as F
+import pandas as pd
+from torch_geometric.data import Data
+from torch_geometric.nn import GAE, GATConv
 
 
-class GATModel(torch.nn.Module):
-    def __init__(self, in_channels, out_channels, edge_types_count, heads=8):
-        super(GATModel, self).__init__()
-        self.conv1 = GATConv(in_channels, out_channels, heads=heads, concat=True)
-        self.conv2 = GATConv(out_channels * heads, out_channels, heads=1, concat=False)
-        
-        # Embedding layer for edge attributes (edge types)
-        self.edge_embedding = torch.nn.Embedding(edge_types_count, out_channels)  # Map edge types to embeddings
-
-    def forward(self, data):
-        x, edge_index, edge_attr = data.x, data.edge_index, data.edge_attr
-
-        # Look up the edge embeddings for the edge types
-        edge_embeddings = self.edge_embedding(edge_attr)  # Get embeddings for edge attributes
-        #print(edge_embeddings)  # Print the learned edge embeddings for sense check
-        edge_attr = edge_embeddings  # Use these embeddings as the new edge features
-        
-
-
-        # Perform the GAT convolutions
-        x = self.conv1(x, edge_index, edge_attr)
-        x = x.relu()
-        x = self.conv2(x, edge_index, edge_attr)
-
-        return x  # Return only the node embeddings, not edge embeddings
-
-
-
-
-def extract_embeddings(graph_object,node_ids, embedding_output):
+class GATEncoder(torch.nn.Module):
     """
-    Extract embeddings from a graph using GAT and save them to a file with node IDs.
+    Graph Attention Network (GAT) encoder for unsupervised link reconstruction.
     """
-    # Load the graph object 
-    data = torch.load(graph_object)
+    def __init__(self, in_channels, hidden_channels, out_channels, heads=8):
+        super().__init__()
+        # First GAT layer
+        self.conv1 = GATConv(in_channels, hidden_channels, heads=heads, concat=True)
+        # Second GAT layer to obtain final embeddings
+        self.conv2 = GATConv(hidden_channels * heads, out_channels, heads=1, concat=False)
 
-    # Extract node features from the loaded graph
-    node_features = data.x
-
-    # Extract edge attributes (edge types)
-    edge_types = data.edge_attr
-
-    # Extract unique edge types (if not already known)
-    unique_edge_types = sorted(set(edge_types.numpy()))  # Convert tensor to numpy for set operation
+    def forward(self, x, edge_index):
+        # Apply first attention layer and activation
+        x = self.conv1(x, edge_index)
+        x = F.elu(x)
+        # Apply second attention layer
+        return self.conv2(x, edge_index)
 
 
-    # Instantiate the model
-    model = GATModel(in_channels=node_features.shape[1], out_channels=4, edge_types_count=len(unique_edge_types))
+def extract_embeddings(graph_file: str,
+                       node_ids_file: str,
+                       embedding_output: str,
+                       hidden_channels: int = 16,
+                       epochs: int = 100,
+                       lr: float = 0.005):
+    """
+    Train a GAT-based autoencoder to reconstruct edges, then save node embeddings.
 
-    # Set the model to evaluation mode
+    Parameters:
+    - graph_file: path to the PyG Data object (.pt) containing x, edge_index, edge_attr.
+    - node_ids_file: CSV with column 'id' mapping node index to original ID.
+    - embedding_output: path to save embeddings CSV (id, topological_embedding).
+    - hidden_channels: hidden dimension for the GAT layer.
+    - epochs: number of training epochs.
+    - lr: learning rate for optimizer.
+    """
+    # Load graph data
+    data: Data = torch.load(graph_file)
+    x, edge_index = data.x, data.edge_index
+
+    # Initialize GAT encoder and autoencoder wrapper
+    encoder = GATEncoder(in_channels=x.size(1),
+                         hidden_channels=hidden_channels,
+                         out_channels=hidden_channels)
+    model = GAE(encoder)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+
+    # Training loop: reconstruct edges by minimizing reconstruction loss
+    model.train()
+    for epoch in range(1, epochs + 1):
+        optimizer.zero_grad()
+        z = model.encode(x, edge_index)
+        loss = model.recon_loss(z, edge_index)
+        loss.backward()
+        optimizer.step()
+        if epoch % max(1, epochs // 10) == 0:
+            print(f"Epoch {epoch:03d}/{epochs}, Reconstruction Loss: {loss:.4f}")
+
+    # Generate final embeddings in evaluation mode
     model.eval()
+    with torch.no_grad():
+        z = model.encode(x, edge_index)
 
-    # Run the model to get node embeddings
-    with torch.no_grad():  # Disable gradient tracking during inference
-        node_embeddings = model(data)
+    # Convert embeddings to pandas DataFrame
+    emb_np = z.cpu().numpy()
+    df = pd.DataFrame(emb_np)
 
-    # Debug: Print the shape of the node embeddings
-    print(f"Node embeddings shape: {node_embeddings.shape}")
+    # Load original node IDs to match embedding rows
+    ids_df = pd.read_csv(node_ids_file)
+    df['id'] = ids_df['id']
 
-    # Convert the node embeddings to a numpy array for saving
-    node_embeddings = node_embeddings.cpu().numpy()
-
-    # Create a DataFrame for saving the embeddings
-    embeddings_df = pd.DataFrame(node_embeddings)
-
-
-    # Load the node IDs from the CSV
-    node_ids_df = pd.read_csv(node_ids)
-    node_ids = node_ids_df['id']
-
-
-    # Add node IDs to the embeddings DataFrame
-    embeddings_df['id'] = node_ids
-
-
-    # Create the 'topological_embedding' column by joining the embeddings into a single string per node
-    # Use only the node embeddings, exclude edge attributes
-    embeddings_df['topological_embedding'] = embeddings_df.iloc[:, :-1].apply(lambda row: ' '.join(row.astype(str)), axis=1)
-
-    # Keep only the 'id' and 'topological_embedding' columns
-    embeddings_df = embeddings_df[['id', 'topological_embedding']]
-
-    # Save the embeddings to a CSV
-    embeddings_df.to_csv(embedding_output, index=False)
+    # Combine numeric embeddings into space-separated string for each node
+    df['topological_embedding'] = df.drop(columns='id') \
+        .astype(str).agg(' '.join, axis=1)
+    out_df = df[['id', 'topological_embedding']]
+    out_df.to_csv(embedding_output, index=False)
     print(f"Embeddings saved to {embedding_output}")
 
 
 def main():
-    # Set up command-line argument parsing
-    parser = argparse.ArgumentParser(description="Extract node embeddings using a GAT model.")
-    parser.add_argument('--graph_object', type=str, required=True, help="Path to the pyTorch graph object")
-    parser.add_argument('--node_ids', type=str, required=True, help="Path to the node IDs for graph object CSV file")
-    parser.add_argument('--embedding_output', type=str, required=True, help="Path to save the node embeddings CSV file")
-    
+    parser = argparse.ArgumentParser(
+        description="Extract node embeddings via GAT autoencoder"
+    )
+    parser.add_argument('--graph_file', required=True,
+                        help='Path to graph object file (.pt)')
+    parser.add_argument('--node_ids_file', required=True,
+                        help='CSV file mapping node indices to original IDs')
+    parser.add_argument('--embedding_output', required=True,
+                        help='Output CSV path for embeddings')
+    parser.add_argument('--hidden_channels', type=int, default=16,
+                        help='Hidden dimension size for GAT layers')
+    parser.add_argument('--epochs', type=int, default=100,
+                        help='Number of training epochs')
+    parser.add_argument('--lr', type=float, default=0.005,
+                        help='Learning rate for training')
     args = parser.parse_args()
 
-    # Extract embeddings and save to file
-    extract_embeddings(args.graph_object, args.node_ids, args.embedding_output)
+    extract_embeddings(
+        args.graph_file,
+        args.node_ids_file,
+        args.embedding_output,
+        hidden_channels=args.hidden_channels,
+        epochs=args.epochs,
+        lr=args.lr
+    )
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()

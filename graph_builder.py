@@ -1,107 +1,102 @@
 #!/usr/bin/env python3
-import torch
+"""
+Build a biological knowledge graph from CSV files of nodes and edges.
+"""
+import os
 import argparse
-from torch_geometric.data import Data
-from sklearn.preprocessing import MultiLabelBinarizer
+import torch
+import numpy as np
 import pandas as pd
-
-
+from sklearn.preprocessing import MultiLabelBinarizer
+from torch_geometric.data import Data
 
 
 def load_data(node_file, edge_file):
     """
-    Load nodes and edges from CSV files.
+    Load nodes and edges from CSV files and prepare feature and adjacency data.
+
+    Parameters:
+    - node_file: Path to a node CSV containing an 'id' column and multi-valued fields.
+    - edge_file: Path to an edge CSV containing 'source', 'target', and 'predicate' columns.
+
+    Returns:
+    - node_features (Tensor): One-hot encoded features for each node.
+    - node_ids (Series): Original node IDs in the same order as features.
+    - edge_index (LongTensor): Source/target index pairs for graph edges.
+    - edge_attr (LongTensor): Encoded edge predicate types per edge.
     """
-      # Load the node features from CSV
-    node_features_df = pd.read_csv(node_file)
-    node_ids = node_features_df['id']
-    #this is the part of the code that will not currently work as need to parse the data
-   # node_features = torch.tensor(node_features_df.drop(columns=['id']).values, dtype=torch.float)
-    # Generate random node features as a place holder because node feature parsing to be added
-   # node_features = torch.rand((num_nodes, 2))  # 2D features for each node
+    # Load node table
+    node_df = pd.read_csv(node_file)
+    node_ids = node_df['id']
 
+    # Parse multi-valued fields separated by 'ǂ'
+    multi_cols = ['all_names', 'all_categories', 'equivalent_curies', 'publications', 'label']
+    for col in multi_cols:
+        if col in node_df.columns:
+            node_df[col] = node_df[col].apply(lambda x: x.split('ǂ') if isinstance(x, str) else [])
 
+    # One-hot encode the 'equivalent_curies' field as node features
+    if 'equivalent_curies' in node_df.columns:
+        mlb = MultiLabelBinarizer()
+        one_hot = mlb.fit_transform(node_df['equivalent_curies'])
+    else:
+        # Fallback to zero-dimension features if missing
+        one_hot = np.zeros((len(node_df), 0), dtype=int)
+    node_features = torch.tensor(one_hot, dtype=torch.float)
 
-     
-    print(node_features_df.columns)
+    # Load edge table
+    edge_df = pd.read_csv(edge_file)
+    edge_index = torch.tensor(edge_df[['source', 'target']].values.T, dtype=torch.long)
 
-    # Define columns that contain multi-value entries separated by 'ǂ'
-    multi_value_columns = ['all_names', 'all_categories', 'equivalent_curies', 'publications', 'label']
+    # Encode edge predicate types as integers
+    if 'predicate' in edge_df.columns:
+        predicates = edge_df['predicate']
+    else:
+        predicates = edge_df.iloc[:, 2]
+    unique_preds = sorted(predicates.unique())
+    pred2idx = {p: i for i, p in enumerate(unique_preds)}
+    edge_attr = torch.tensor([pred2idx[p] for p in predicates], dtype=torch.long)
 
-    # Split multi-value fields
-    for col in multi_value_columns:
-        node_features_df[col] = node_features_df[col].apply(lambda x: x.split('ǂ') if isinstance(x, str) else x)
-
-
-
-    # Extract the 'equivalent_curies' column for one-hot encoding
-    curies = node_features_df['equivalent_curies'].explode().unique()  # Get all unique CURIEs
-    curies = [curie.strip() for curie in curies]  # Clean up extra spaces, if any
-
-    # One-hot encode the 'equivalent_curies' for each node
-    mlb = MultiLabelBinarizer()
-    one_hot_curies = mlb.fit_transform(node_features_df['equivalent_curies'])  # Each row gets a binary vector
-
-    # Convert the one-hot encoded matrix to a PyTorch tensor
-    node_features = torch.tensor(one_hot_curies, dtype=torch.float)
-
-
-    # Load the edge data from CSV
-    edge_data_df = pd.read_csv(edges_file)
-    edge_index = torch.tensor(edge_data_df[['source', 'target']].values.T, dtype=torch.long)
-
-    # Extract unique edge types from the 'type' column
-    edge_types = edge_data_df['predicate'].values
-    unique_edge_types = sorted(set(edge_types))  # Sort to ensure consistent mapping
-
-    # Create a mapping of edge types to integer values
-    edge_type_mapping = {etype: idx for idx, etype in enumerate(unique_edge_types)}
-
-    # Convert edge types to their corresponding numeric values
-    edge_attr = torch.tensor([edge_type_mapping[et] for et in edge_types], dtype=torch.long)
-
- 
-    
     return node_features, node_ids, edge_index, edge_attr
 
- 
 
-def build_knowledge_graph(node_file, edge_file, output_file):
+def build_knowledge_graph(node_file, edge_file, output_file, node_ids_file='node_ids.csv'):
     """
-    Build a knowledge graph from node and edge CSV files and save it to a .pt file.
-    """
-    node_features, node_ids, edge_index, edge_attr = load_data(node_file, edge_file)
-       # Create a torch_geometric Data object
-    data = Data(x=node_features, edge_index=edge_index, edge_attr=edge_attr)
+    Build and save a knowledge graph Data object and corresponding node ID lookup.
 
-    # Save the graph object to a file
+    Parameters:
+    - node_file: Path to the node CSV file.
+    - edge_file: Path to the edge CSV file.
+    - output_file: Path to save the PyG Data object (.pt).
+    - node_ids_file: Path to save the node ID lookup CSV.
+    """
+    x, ids, edge_index, edge_attr = load_data(node_file, edge_file)
+    data = Data(x=x, edge_index=edge_index, edge_attr=edge_attr)
     torch.save(data, output_file)
     print(f"Graph saved to {output_file}")
-  
-    # Save node IDs separately when saving the graph
+    # Save node IDs to preserve mapping from index to original ID
+    ids.to_csv(node_ids_file, index=False)
+    print(f"Node IDs saved to {node_ids_file}")
 
-    node_ids.to_csv("node_ids.csv", index=False)
- 
-    
+
 def main():
-    parser = argparse.ArgumentParser(description="Build graph")
-    
-    # Input data files
-    parser.add_argument('--node_file', required=True, help='Path to the node CSV file')
-    parser.add_argument('--edge_file', required=True, help='Path to the edge CSV file')
-    
-    # Output model file
-    parser.add_argument('--output_file', required=True, help='Path to save the trained model ')
-
-    # Parse arguments
+    parser = argparse.ArgumentParser(
+        description="Build a knowledge graph from node and edge CSV files"
+    )
+    parser.add_argument('--node_file', required=True,
+                        help='Path to the node CSV file')
+    parser.add_argument('--edge_file', required=True,
+                        help='Path to the edge CSV file')
+    parser.add_argument('--output_file', required=True,
+                        help='Path to save the graph object (.pt)')
+    parser.add_argument('--node_ids_file', default='node_ids.csv',
+                        help='Path to save the node IDs CSV')
     args = parser.parse_args()
-    
-    # Call the train_ml_model function
-    build_knowledge_graph(args.node_file, args.edge_file, args.output_file)
+    build_knowledge_graph(
+        args.node_file, args.edge_file,
+        args.output_file, args.node_ids_file
+    )
+
 
 if __name__ == '__main__':
     main()
-
-
-
-  

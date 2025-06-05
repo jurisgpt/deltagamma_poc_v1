@@ -1,8 +1,16 @@
+"""
+Train and evaluate an XGBoost classifier on concatenated node embeddings.
+
+This module loads graph embeddings and drug-disease labels, performs data splitting,
+cross-validation, hyperparameter search, and saves the final model.
+"""
 import argparse
 import pandas as pd
 import numpy as np
 import xgboost as xgb
-from sklearn.model_selection import train_test_split, StratifiedKFold, RandomizedSearchCV, cross_val_score
+from sklearn.model_selection import (
+    train_test_split, StratifiedKFold, RandomizedSearchCV, cross_val_score
+)
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from scipy.stats import uniform, randint
 import joblib
@@ -15,16 +23,16 @@ def load_data(embedding_file, label_file):
     Assumes embeddings are in the 'topological_embedding' column and labels are in 'source' and 'target' columns.
     The 'id' column in the embeddings file will correspond to the drug and disease node ids in the labels file.
     """
-    # Load the embeddings CSV file
+    # Read node embeddings (id, topological_embedding)
     embeddings_df = pd.read_csv(embedding_file)
     
-    # Load the labels CSV file
+    # Read drug-disease label file (source, target, y)
     labels_df = pd.read_csv(label_file)
     
-    # Create a dictionary from embeddings dataframe to map 'id' to 'topological_embedding'
+    # Map each node ID to its string embedding
     embeddings_dict = dict(zip(embeddings_df['id'], embeddings_df['topological_embedding']))
 
-    # Initialize lists to store the concatenated features and labels
+    # Build feature matrix by concatenating source and target embeddings
     concatenated_embeddings = []
     labels = []
     
@@ -39,7 +47,7 @@ def load_data(embedding_file, label_file):
         target_embedding_str = embeddings_dict.get(target_id, None)
         
         if source_embedding_str is not None and target_embedding_str is not None:
-            # Clean the embeddings: Remove '[' and ']', then split by space and convert to floats
+            # Convert embedding string back to numeric list
             source_embedding = [float(val) for val in source_embedding_str.strip('[]').split()]
             target_embedding = [float(val) for val in target_embedding_str.strip('[]').split()]
             
@@ -58,7 +66,7 @@ def load_data(embedding_file, label_file):
 
 def split_data(embeddings, labels, test_size=0.2, random_state=42):
     """
-    Split the data into training and independent test sets.
+    Split embeddings and labels into train/test preserving class balance.
     """
     X_train, X_test, y_train, y_test = train_test_split(
         embeddings, labels, test_size=test_size, random_state=random_state, stratify=labels)
@@ -67,7 +75,7 @@ def split_data(embeddings, labels, test_size=0.2, random_state=42):
 
 def cross_validate_model(X_train, y_train, model, n_splits=5):
     """
-    Perform cross-validation using Stratified K-Fold.
+    Evaluate model performance via stratified K-fold cross-validation.
     """
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
     cv_scores = cross_val_score(model, X_train, y_train, cv=skf, scoring='accuracy')
@@ -79,7 +87,7 @@ def cross_validate_model(X_train, y_train, model, n_splits=5):
 
 def perform_random_search(X_train, y_train):
     """
-    Perform RandomizedSearchCV on the XGBoost model.
+    Search hyperparameter space for XGBoost using random sampling.
     """
     # Define the parameter grid for RandomizedSearchCV
     param_dist = {
@@ -116,7 +124,7 @@ def perform_random_search(X_train, y_train):
 
 def train_xgboost(X_train, y_train, X_test, y_test):
     """
-    Train the XGBoost model (using randomized search for hyperparameter tuning) and evaluate it on the test set.
+    Tune hyperparameters, train the final XGBoost model, and report test metrics.
     """
     print("Performing RandomizedSearchCV for hyperparameter tuning...")
     best_model = perform_random_search(X_train, y_train)
@@ -141,7 +149,7 @@ def train_xgboost(X_train, y_train, X_test, y_test):
 
 def save_model(model, filename):
     """
-    Save the trained model to a file.
+    Serialize trained model to disk via joblib.
     """
     joblib.dump(model, filename)
     print(f"Model saved to {filename}")
@@ -170,7 +178,12 @@ def train_ml_model(embedding_file, label_file, model_file):
     save_model(trained_model, model_file)
 
 def main():
-    parser = argparse.ArgumentParser(description="Train a classifier with cross-validation and RandomizedSearchCV using XGBoost.")
+    """
+    Parse command-line arguments and invoke training pipeline.
+    """
+    parser = argparse.ArgumentParser(
+        description="Train an XGBoost classifier on graph embeddings"
+    )
     
     # Input data files
     parser.add_argument('--embedding_file', required=True, help='Path to the embeddings CSV file')
