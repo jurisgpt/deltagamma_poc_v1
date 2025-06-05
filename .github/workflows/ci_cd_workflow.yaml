@@ -31,7 +31,7 @@ jobs:
     - name: Run Bandit security scanner
       run: |
         pip install bandit
-        bandit -r . -c .bandit
+        bandit -r . --exclude .git,__pycache__,venv,build,dist,code_quality --skip B404,B603
     
     - name: Run code quality checks
       run: |

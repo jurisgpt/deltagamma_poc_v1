@@ -27,18 +27,26 @@ def load_data(node_file, edge_file):
     """
     # Load node table
     node_df = pd.read_csv(node_file)
-    node_ids = node_df['id']
+    node_ids = node_df["id"]
 
     # Parse multi-valued fields separated by 'ǂ'
-    multi_cols = ['all_names', 'all_categories', 'equivalent_curies', 'publications', 'label']
+    multi_cols = [
+        "all_names",
+        "all_categories",
+        "equivalent_curies",
+        "publications",
+        "label",
+    ]
     for col in multi_cols:
         if col in node_df.columns:
-            node_df[col] = node_df[col].apply(lambda x: x.split('ǂ') if isinstance(x, str) else [])
+            node_df[col] = node_df[col].apply(
+                lambda x: x.split("ǂ") if isinstance(x, str) else []
+            )
 
     # One-hot encode the 'equivalent_curies' field as node features
-    if 'equivalent_curies' in node_df.columns:
+    if "equivalent_curies" in node_df.columns:
         mlb = MultiLabelBinarizer()
-        one_hot = mlb.fit_transform(node_df['equivalent_curies'])
+        one_hot = mlb.fit_transform(node_df["equivalent_curies"])
     else:
         # Fallback to zero-dimension features if missing
         one_hot = np.zeros((len(node_df), 0), dtype=int)
@@ -46,11 +54,11 @@ def load_data(node_file, edge_file):
 
     # Load edge table
     edge_df = pd.read_csv(edge_file)
-    edge_index = torch.tensor(edge_df[['source', 'target']].values.T, dtype=torch.long)
+    edge_index = torch.tensor(edge_df[["source", "target"]].values.T, dtype=torch.long)
 
     # Encode edge predicate types as integers
-    if 'predicate' in edge_df.columns:
-        predicates = edge_df['predicate']
+    if "predicate" in edge_df.columns:
+        predicates = edge_df["predicate"]
     else:
         predicates = edge_df.iloc[:, 2]
     unique_preds = sorted(predicates.unique())
@@ -60,7 +68,9 @@ def load_data(node_file, edge_file):
     return node_features, node_ids, edge_index, edge_attr
 
 
-def build_knowledge_graph(node_file, edge_file, output_file, node_ids_file='node_ids.csv'):
+def build_knowledge_graph(
+    node_file, edge_file, output_file, node_ids_file="node_ids.csv"
+):
     """
     Build and save a knowledge graph Data object and corresponding node ID lookup.
 
@@ -83,20 +93,19 @@ def main():
     parser = argparse.ArgumentParser(
         description="Build a knowledge graph from node and edge CSV files"
     )
-    parser.add_argument('--node_file', required=True,
-                        help='Path to the node CSV file')
-    parser.add_argument('--edge_file', required=True,
-                        help='Path to the edge CSV file')
-    parser.add_argument('--output_file', required=True,
-                        help='Path to save the graph object (.pt)')
-    parser.add_argument('--node_ids_file', default='node_ids.csv',
-                        help='Path to save the node IDs CSV')
+    parser.add_argument("--node_file", required=True, help="Path to the node CSV file")
+    parser.add_argument("--edge_file", required=True, help="Path to the edge CSV file")
+    parser.add_argument(
+        "--output_file", required=True, help="Path to save the graph object (.pt)"
+    )
+    parser.add_argument(
+        "--node_ids_file", default="node_ids.csv", help="Path to save the node IDs CSV"
+    )
     args = parser.parse_args()
     build_knowledge_graph(
-        args.node_file, args.edge_file,
-        args.output_file, args.node_ids_file
+        args.node_file, args.edge_file, args.output_file, args.node_ids_file
     )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
