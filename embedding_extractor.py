@@ -15,7 +15,9 @@ class GATEncoder(torch.nn.Module):
     Graph Attention Network (GAT) encoder for unsupervised link reconstruction.
     """
 
-    def __init__(self, in_channels, hidden_channels, out_channels, heads=8):
+    def __init__(
+        self, in_channels: int, hidden_channels: int, out_channels: int, heads: int = 8
+    ) -> None:
         super().__init__()
         # First GAT layer
         self.conv1 = GATConv(in_channels, hidden_channels, heads=heads, concat=True)
@@ -24,7 +26,7 @@ class GATEncoder(torch.nn.Module):
             hidden_channels * heads, out_channels, heads=1, concat=False
         )
 
-    def forward(self, x, edge_index):
+    def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
         # Apply first attention layer and activation
         x = self.conv1(x, edge_index)
         x = F.elu(x)
@@ -39,7 +41,7 @@ def extract_embeddings(
     hidden_channels: int = 16,
     epochs: int = 100,
     lr: float = 0.005,
-):
+) -> None:
     """
     Train a GAT-based autoencoder to reconstruct edges, then save node embeddings.
 
@@ -99,7 +101,7 @@ def extract_embeddings(
     print(f"Embeddings saved to {embedding_output}")
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Extract node embeddings via GAT autoencoder"
     )

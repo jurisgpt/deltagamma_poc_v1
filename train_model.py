@@ -9,6 +9,7 @@ import argparse
 import pandas as pd
 import numpy as np
 import xgboost as xgb
+from typing import Tuple, Any
 from sklearn.model_selection import (
     train_test_split,
     StratifiedKFold,
@@ -20,7 +21,7 @@ from scipy.stats import uniform, randint
 import joblib
 
 
-def load_data(embedding_file, label_file):
+def load_data(embedding_file: str, label_file: str) -> Tuple[np.ndarray, np.ndarray]:
     """
     Load the embeddings and label file from CSV.
     Assumes embeddings are in the 'topological_embedding' column and labels are in 'source' and 'target' columns.
@@ -72,7 +73,12 @@ def load_data(embedding_file, label_file):
     return X, y
 
 
-def split_data(embeddings, labels, test_size=0.2, random_state=42):
+def split_data(
+    embeddings: np.ndarray,
+    labels: np.ndarray,
+    test_size: float = 0.2,
+    random_state: int = 42,
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """
     Split embeddings and labels into train/test preserving class balance.
     """
@@ -87,7 +93,9 @@ def split_data(embeddings, labels, test_size=0.2, random_state=42):
     return X_train, X_test, y_train, y_test
 
 
-def cross_validate_model(X_train, y_train, model, n_splits=5):
+def cross_validate_model(
+    X_train: np.ndarray, y_train: np.ndarray, model: Any, n_splits: int = 5
+) -> np.ndarray:
     """
     Evaluate model performance via stratified K-fold cross-validation.
     """
@@ -100,7 +108,7 @@ def cross_validate_model(X_train, y_train, model, n_splits=5):
     return cv_scores
 
 
-def perform_random_search(X_train, y_train):
+def perform_random_search(X_train: np.ndarray, y_train: np.ndarray) -> Any:
     """
     Search hyperparameter space for XGBoost using random sampling.
     """
@@ -140,7 +148,9 @@ def perform_random_search(X_train, y_train):
     return random_search.best_estimator_
 
 
-def train_xgboost(X_train, y_train, X_test, y_test):
+def train_xgboost(
+    X_train: np.ndarray, y_train: np.ndarray, X_test: np.ndarray, y_test: np.ndarray
+) -> Any:
     """
     Tune hyperparameters, train the final XGBoost model, and report test metrics.
     """
@@ -166,7 +176,7 @@ def train_xgboost(X_train, y_train, X_test, y_test):
     return best_model
 
 
-def save_model(model, filename):
+def save_model(model: Any, filename: str) -> None:
     """
     Serialize trained model to disk via joblib.
     """
@@ -174,7 +184,7 @@ def save_model(model, filename):
     print(f"Model saved to {filename}")
 
 
-def train_ml_model(embedding_file, label_file, model_file):
+def train_ml_model(embedding_file: str, label_file: str, model_file: str) -> None:
     """
     Main function to load data, train model, and save the model.
     """
@@ -200,7 +210,7 @@ def train_ml_model(embedding_file, label_file, model_file):
     save_model(trained_model, model_file)
 
 
-def main():
+def main() -> None:
     """
     Parse command-line arguments and invoke training pipeline.
     """

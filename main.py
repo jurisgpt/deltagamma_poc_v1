@@ -20,7 +20,7 @@ def run_full_pipeline(
     hidden_channels: int,
     epochs: int,
     lr: float,
-):
+) -> None:
     """
     Execute all steps: build graph, train GAT embeddings, and train classifier.
     """
@@ -41,7 +41,7 @@ def run_full_pipeline(
     train_ml_model(embedding_file, label_file, model_file)
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Run EveryCure full pipeline or its individual stages"
     )

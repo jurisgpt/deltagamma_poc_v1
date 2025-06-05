@@ -7,11 +7,14 @@ import argparse
 import torch
 import numpy as np
 import pandas as pd
+from typing import Tuple
 from sklearn.preprocessing import MultiLabelBinarizer
 from torch_geometric.data import Data
 
 
-def load_data(node_file, edge_file):
+def load_data(
+    node_file: str, edge_file: str
+) -> Tuple[torch.Tensor, pd.Series, torch.Tensor, torch.Tensor]:
     """
     Load nodes and edges from CSV files and prepare feature and adjacency data.
 
@@ -69,8 +72,11 @@ def load_data(node_file, edge_file):
 
 
 def build_knowledge_graph(
-    node_file, edge_file, output_file, node_ids_file="node_ids.csv"
-):
+    node_file: str,
+    edge_file: str,
+    output_file: str,
+    node_ids_file: str = "node_ids.csv",
+) -> None:
     """
     Build and save a knowledge graph Data object and corresponding node ID lookup.
 
@@ -89,7 +95,7 @@ def build_knowledge_graph(
     print(f"Node IDs saved to {node_ids_file}")
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Build a knowledge graph from node and edge CSV files"
     )

@@ -14,4 +14,16 @@ fi
 echo "🎨 Fixing code formatting with black..."
 black .
 
-echo "✅ Precommit checks completed!"
+echo "🔍 Running type checking with mypy..."
+mypy . || {
+    echo "❌ MyPy type checking failed. Please fix type annotation issues."
+    exit 1
+}
+
+echo "🧹 Running linting with flake8..."
+flake8 . || {
+    echo "❌ Flake8 linting failed. Please fix code style issues."
+    exit 1
+}
+
+echo "✅ All precommit checks passed!"
