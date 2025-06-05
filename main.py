@@ -4,8 +4,8 @@ Orchestrate the full EveryCure pipeline: graph construction, embedding extractio
 """
 import argparse
 
-from graph_builder import build_knowledge_graph
 from embedding_extractor import extract_embeddings
+from graph_builder import build_knowledge_graph
 from train_model import train_ml_model
 
 
@@ -20,7 +20,7 @@ def run_full_pipeline(
     hidden_channels: int,
     epochs: int,
     lr: float,
-) -> None:
+):
     """
     Execute all steps: build graph, train GAT embeddings, and train classifier.
     """
@@ -41,7 +41,7 @@ def run_full_pipeline(
     train_ml_model(embedding_file, label_file, model_file)
 
 
-def main() -> None:
+def main():
     parser = argparse.ArgumentParser(
         description="Run EveryCure full pipeline or its individual stages"
     )

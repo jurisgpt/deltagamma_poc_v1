@@ -1,8 +1,8 @@
-import torch
 import numpy as np
 import pandas as pd
-from torch_geometric.data import Data
+import torch
 from sklearn.preprocessing import LabelEncoder  # To encode edge types as numbers
+from torch_geometric.data import Data
 
 
 def generate_random_graph(

@@ -28,7 +28,7 @@ scipy==1.15.1
 six==1.17.0
 sympy==1.13.3
 threadpoolctl==3.5.0
-torch==2.2.2
+torch==2.7.1
 torch-geometric==2.6.1
 tqdm==4.67.1
 typing_extensions==4.12.2

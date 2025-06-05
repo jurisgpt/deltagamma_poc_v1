@@ -1,0 +1,881 @@
+# Bandit Configuration File
+# Reference: https://bandit.readthedocs.io/en/latest/config.html
+
+# Target directory for scanning (default: current directory)
+targets: ['.']
+
+# Directory paths to exclude from scanning
+exclude_dirs:
+  - .git
+  - __pycache__
+  - .pytest_cache
+  - .mypy_cache
+  - .venv
+  - venv
+  - env
+  - env2
+  - env3
+  - build
+  - dist
+  - docs
+  - examples
+  - tests
+  - test
+  - testing
+  - migrations
+  - node_modules
+  - .github
+  - .vscode
+  - .idea
+  - .hypothesis
+  - .tox
+  - .eggs
+  - '*.egg-info'
+  - '*.egg'
+  - .ipynb_checkpoints
+  - jupyter_notebook_config.d
+  - .jupyter
+
+# Test IDs to exclude/skip
+# B1xx - general issues (ex: B101, B102, etc.)
+# B2xx - application/framework misconfiguration (ex: B201, B202, etc.)
+# B3xx - blacklisting (ex: B301, B302, etc.)
+# B4xx - cryptography (ex: B401, B402, etc.)
+# B5xx - injection (ex: B501, B502, etc.)
+# B6xx - XSS and other web issues (ex: B601, B602, etc.)
+# B7xx - security misconfiguration (ex: B701, B702, etc.)
+# B8xx - security best practices (ex: B801, B802, etc.)
+# B9xx - security best practices (ex: B901, B902, etc.)
+# B10x - security best practices (ex: B1001, B1002, etc.)
+skips:
+  - B101  # Use of assert detected
+  - B102  # exec used
+  - B103  # set_bad_file_permissions
+  - B104  # hardcoded_bind_all_interfaces
+  - B105  # hardcoded_password_string
+  - B106  # hardcoded_password_funcarg
+  - B107  # hardcoded_password_default
+  - B108  # hardcoded_tmp_directory
+  - B110  # try_except_pass
+  - B112  # try_except_continue
+  - B113  # request_without_timeout
+  - B201  # flask_debug_true
+  - B202  # flask_debug_true_import
+  - B301  # pickle
+  - B302  # marshal
+  - B303  # md5
+  - B304  # ciphers
+  - B305  # ciphers_without_iv
+  - B306  # mktemp_qs
+  - B307  # eval
+  - B308  # mark_safe
+  - B309  # httpsconnection
+  - B310  # urllib_urlopen
+  - B311  # random
+  - B312  # telnetlib
+  - B313  # xml_bad_cElementTree
+  - B314  # xml_bad_ElementTree
+  - B315  # xml_bad_expatreader
+  - B316  # xml_bad_expatbuilder
+  - B317  # xml_bad_sax
+  - B318  # xml_bad_minidom
+  - B319  # xml_bad_pulldom
+  - B320  # xml_bad_etree
+  - B321  # ftplib
+  - B322  # pickle_load
+  - B323  # unverified_context
+  - B324  # hashlib_insecure_functions
+  - B325  # tempnam
+  - B401  # import_telnetlib
+  - B402  # import_ftplib
+  - B403  # import_pickle
+  - B404  # import_subprocess
+  - B405  # import_xml_etree
+  - B406  # import_xml_sax
+  - B407  # import_xml_expat
+  - B408  # import_xml_minidom
+  - B409  # import_xml_pulldom
+  - B410  # import_lxml
+  - B411  # import_xmlrpclib
+  - B412  # import_httpoxy
+  - B413  # import_pycrypto
+  - B415  # import_pycrypto
+  - B501  # request_with_no_cert_validation
+  - B502  # ssl_with_bad_version
+  - B503  # ssl_with_bad_defaults
+  - B504  # ssl_with_no_version
+  - B505  # weak_cryptographic_key
+  - B506  # yaml_load
+  - B507  # ssh_no_host_key_verification
+  - B508  # snmp_insecure_version
+  - B509  # snmp_weak_cryptography
+  - B601  # paramiko_calls
+  - B602  # subprocess_popen_with_shell_equals_true
+  - B603  # subprocess_without_shell_equals_true
+  - B604  # any_other_function_with_shell_equals_true
+  - B605  # start_process_with_a_shell
+  - B606  # start_process_with_no_shell
+  - B607  # start_process_with_partial_path
+  - B608  # hardcoded_sql_expressions
+  - B609  # linux_commands_wildcard_injection
+  - B610  # django_extra_used
+  - B611  # django_rawsql_used
+  - B612  # expression_in_python_use
+  - B613  # expression_in_jinja2_template
+  - B614  # flask_cache_config
+  - B615  # django_mark_safe
+  - B616  # django_httpresponse_redirect
+  - B617  # django_nevercache
+  - B618  # django_csrf_cookie_secure
+  - B619  # django_csrf_cookie_httponly
+  - B620  # django_csrf_cookie_samesite
+  - B621  # django_csrf_cookie_domain
+  - B622  # django_csrf_cookie_path
+  - B623  # django_csrf_cookie_secure
+  - B624  # django_csrf_cookie_httponly
+  - B625  # django_csrf_cookie_samesite
+  - B626  # django_csrf_cookie_domain
+  - B627  # django_csrf_cookie_path
+  - B628  # django_csrf_cookie_secure
+  - B629  # django_csrf_cookie_httponly
+  - B630  # django_csrf_cookie_samesite
+  - B631  # django_csrf_cookie_domain
+  - B632  # django_csrf_cookie_path
+  - B633  # django_csrf_cookie_secure
+  - B634  # django_csrf_cookie_httponly
+  - B635  # django_csrf_cookie_samesite
+  - B636  # django_csrf_cookie_domain
+  - B637  # django_csrf_cookie_path
+  - B638  # django_csrf_cookie_secure
+  - B639  # django_csrf_cookie_httponly
+  - B640  # django_csrf_cookie_samesite
+  - B641  # django_csrf_cookie_domain
+  - B642  # django_csrf_cookie_path
+  - B643  # django_csrf_cookie_secure
+  - B644  # django_csrf_cookie_httponly
+  - B645  # django_csrf_cookie_samesite
+  - B646  # django_csrf_cookie_domain
+  - B647  # django_csrf_cookie_path
+  - B648  # django_csrf_cookie_secure
+  - B649  # django_csrf_cookie_httponly
+  - B650  # django_csrf_cookie_samesite
+  - B651  # django_csrf_cookie_domain
+  - B652  # django_csrf_cookie_path
+  - B653  # django_csrf_cookie_secure
+  - B654  # django_csrf_cookie_httponly
+  - B655  # django_csrf_cookie_samesite
+  - B656  # django_csrf_cookie_domain
+  - B657  # django_csrf_cookie_path
+  - B658  # django_csrf_cookie_secure
+  - B659  # django_csrf_cookie_httponly
+  - B660  # django_csrf_cookie_samesite
+  - B661  # django_csrf_cookie_domain
+  - B662  # django_csrf_cookie_path
+  - B663  # django_csrf_cookie_secure
+  - B664  # django_csrf_cookie_httponly
+  - B665  # django_csrf_cookie_samesite
+  - B666  # django_csrf_cookie_domain
+  - B667  # django_csrf_cookie_path
+  - B668  # django_csrf_cookie_secure
+  - B669  # django_csrf_cookie_httponly
+  - B670  # django_csrf_cookie_samesite
+  - B671  # django_csrf_cookie_domain
+  - B672  # django_csrf_cookie_path
+  - B673  # django_csrf_cookie_secure
+  - B674  # django_csrf_cookie_httponly
+  - B675  # django_csrf_cookie_samesite
+  - B676  # django_csrf_cookie_domain
+  - B677  # django_csrf_cookie_path
+  - B678  # django_csrf_cookie_secure
+  - B679  # django_csrf_cookie_httponly
+  - B680  # django_csrf_cookie_samesite
+  - B681  # django_csrf_cookie_domain
+  - B682  # django_csrf_cookie_path
+  - B683  # django_csrf_cookie_secure
+  - B684  # django_csrf_cookie_httponly
+  - B685  # django_csrf_cookie_samesite
+  - B686  # django_csrf_cookie_domain
+  - B687  # django_csrf_cookie_path
+  - B688  # django_csrf_cookie_secure
+  - B689  # django_csrf_cookie_httponly
+  - B690  # django_csrf_cookie_samesite
+  - B691  # django_csrf_cookie_domain
+  - B692  # django_csrf_cookie_path
+  - B693  # django_csrf_cookie_secure
+  - B694  # django_csrf_cookie_httponly
+  - B695  # django_csrf_cookie_samesite
+  - B696  # django_csrf_cookie_domain
+  - B697  # django_csrf_cookie_path
+  - B698  # django_csrf_cookie_secure
+  - B699  # django_csrf_cookie_httponly
+  - B700  # django_csrf_cookie_samesite
+  - B701  # jinja2_autoescape
+  - B702  # django_mark_safe
+  - B703  # django_nevercache
+  - B704  # django_httpresponse_redirect
+  - B705  # django_csrf_cookie_secure
+  - B706  # django_csrf_cookie_httponly
+  - B707  # django_csrf_cookie_samesite
+  - B708  # django_csrf_cookie_domain
+  - B709  # django_csrf_cookie_path
+  - B710  # django_csrf_cookie_secure
+  - B711  # django_csrf_cookie_httponly
+  - B712  # django_csrf_cookie_samesite
+  - B713  # django_csrf_cookie_domain
+  - B714  # django_csrf_cookie_path
+  - B715  # django_csrf_cookie_secure
+  - B716  # django_csrf_cookie_httponly
+  - B717  # django_csrf_cookie_samesite
+  - B718  # django_csrf_cookie_domain
+  - B719  # django_csrf_cookie_path
+  - B720  # django_csrf_cookie_secure
+  - B721  # django_csrf_cookie_httponly
+  - B722  # django_csrf_cookie_samesite
+  - B723  # django_csrf_cookie_domain
+  - B724  # django_csrf_cookie_path
+  - B725  # django_csrf_cookie_secure
+  - B726  # django_csrf_cookie_httponly
+  - B727  # django_csrf_cookie_samesite
+  - B728  # django_csrf_cookie_domain
+  - B729  # django_csrf_cookie_path
+  - B730  # django_csrf_cookie_secure
+  - B731  # django_csrf_cookie_httponly
+  - B732  # django_csrf_cookie_samesite
+  - B733  # django_csrf_cookie_domain
+  - B734  # django_csrf_cookie_path
+  - B735  # django_csrf_cookie_secure
+  - B736  # django_csrf_cookie_httponly
+  - B737  # django_csrf_cookie_samesite
+  - B738  # django_csrf_cookie_domain
+  - B739  # django_csrf_cookie_path
+  - B740  # django_csrf_cookie_secure
+  - B741  # django_csrf_cookie_httponly
+  - B742  # django_csrf_cookie_samesite
+  - B743  # django_csrf_cookie_domain
+  - B744  # django_csrf_cookie_path
+  - B113  # request_without_timeout
+  - B201  # flask_debug_true
+  - B202  # flask_debug_true_import
+  - B301  # pickle
+  - B302  # marshal
+  - B303  # md5
+  - B304  # ciphers
+  - B305  # ciphers_without_iv
+  - B306  # mktemp_qs
+  - B307  # eval
+  - B308  # mark_safe
+  - B309  # httpsconnection
+  - B310  # urllib_urlopen
+  - B311  # random
+  - B312  # telnetlib
+  - B313  # xml_bad_cElementTree
+  - B314  # xml_bad_ElementTree
+  - B315  # xml_bad_expatreader
+  - B316  # xml_bad_expatbuilder
+  - B317  # xml_bad_sax
+  - B318  # xml_bad_expat
+  - B319  # xml_bad_minidom
+  - B320  # xml_bad_pulldom
+  - B321  # xml_bad_etree
+  - B322  # xml_bad_xmlrpc
+  - B323  # unverified_context
+  - B324  # hashlib_insecure_functions
+  - B325  # tempnam
+  - B401  # import_telnetlib
+  - B402  # import_ftplib
+  - B403  # import_pickle
+  - B404  # import_subprocess
+  - B405  # import_xml_etree
+  - B406  # import_xml_sax
+  - B407  # import_xml_expat
+  - B408  # import_xml_minidom
+  - B409  # import_xml_pulldom
+  - B410  # import_lxml
+  - B411  # import_xmlrpclib
+  - B412  # import_httpoxy
+  - B413  # import_pycrypto
+  - B415  # import_pycrypto
+  - B501  # request_with_no_cert_validation
+  - B502  # ssl_with_bad_version
+  - B503  # ssl_with_bad_defaults
+  - B504  # ssl_with_no_version
+  - B505  # weak_cryptographic_key
+  - B506  # yaml_load
+  - B507  # ssh_no_host_key_verification
+  - B508  # snmp_insecure_version
+  - B509  # snmp_weak_cryptography
+  - B601  # paramiko_calls
+  - B602  # subprocess_popen_with_shell_equals_true
+  - B603  # subprocess_without_shell_equals_true
+  - B604  # any_other_function_with_shell_equals_true
+  - B605  # start_process_with_a_shell
+  - B606  # start_process_with_no_shell
+  - B607  # start_process_with_partial_path
+  - B608  # hardcoded_sql_expressions
+  - B609  # linux_commands_wildcard_injection
+  - B610  # django_extra_used
+  - B611  # django_rawsql_used
+  - B612  # expression_in_python_use
+  - B613  # expression_in_jinja2_template
+  - B614  # flask_cache_config
+  - B615  # django_mark_safe
+  - B616  # django_httpresponse_redirect
+  - B617  # django_nevercache
+  - B618  # django_csrf_cookie_secure
+  - B619  # django_csrf_cookie_httponly
+  - B620  # django_csrf_cookie_samesite
+  - B621  # django_csrf_cookie_domain
+  - B622  # django_csrf_cookie_path
+  - B623  # django_csrf_cookie_secure
+  - B624  # django_csrf_cookie_httponly
+  - B625  # django_csrf_cookie_samesite
+  - B626  # django_csrf_cookie_domain
+  - B627  # django_csrf_cookie_path
+  - B628  # django_csrf_cookie_secure
+  - B629  # django_csrf_cookie_httponly
+  - B630  # django_csrf_cookie_samesite
+  - B631  # django_csrf_cookie_domain
+  - B632  # django_csrf_cookie_path
+  - B633  # django_csrf_cookie_secure
+  - B634  # django_csrf_cookie_httponly
+  - B635  # django_csrf_cookie_samesite
+  - B636  # django_csrf_cookie_domain
+  - B637  # django_csrf_cookie_path
+  - B638  # django_csrf_cookie_secure
+  - B639  # django_csrf_cookie_httponly
+  - B640  # django_csrf_cookie_samesite
+  - B641  # django_csrf_cookie_domain
+  - B642  # django_csrf_cookie_path
+  - B643  # django_csrf_cookie_secure
+  - B644  # django_csrf_cookie_httponly
+  - B645  # django_csrf_cookie_samesite
+  - B646  # django_csrf_cookie_domain
+  - B647  # django_csrf_cookie_path
+  - B648  # django_csrf_cookie_secure
+  - B649  # django_csrf_cookie_httponly
+  - B650  # django_csrf_cookie_samesite
+  - B651  # django_csrf_cookie_domain
+  - B652  # django_csrf_cookie_path
+  - B653  # django_csrf_cookie_secure
+  - B654  # django_csrf_cookie_httponly
+  - B655  # django_csrf_cookie_samesite
+  - B656  # django_csrf_cookie_domain
+  - B657  # django_csrf_cookie_path
+  - B658  # django_csrf_cookie_secure
+  - B659  # django_csrf_cookie_httponly
+  - B660  # django_csrf_cookie_samesite
+  - B661  # django_csrf_cookie_domain
+  - B662  # django_csrf_cookie_path
+  - B663  # django_csrf_cookie_secure
+  - B664  # django_csrf_cookie_httponly
+  - B665  # django_csrf_cookie_samesite
+  - B666  # django_csrf_cookie_domain
+  - B667  # django_csrf_cookie_path
+  - B668  # django_csrf_cookie_secure
+  - B669  # django_csrf_cookie_httponly
+  - B670  # django_csrf_cookie_samesite
+  - B671  # django_csrf_cookie_domain
+  - B672  # django_csrf_cookie_path
+  - B673  # django_csrf_cookie_secure
+  - B674  # django_csrf_cookie_httponly
+  - B675  # django_csrf_cookie_samesite
+  - B676  # django_csrf_cookie_domain
+  - B677  # django_csrf_cookie_path
+  - B678  # django_csrf_cookie_secure
+  - B679  # django_csrf_cookie_httponly
+  - B680  # django_csrf_cookie_samesite
+  - B681  # django_csrf_cookie_domain
+  - B682  # django_csrf_cookie_path
+  - B683  # django_csrf_cookie_secure
+  - B684  # django_csrf_cookie_httponly
+  - B685  # django_csrf_cookie_samesite
+  - B686  # django_csrf_cookie_domain
+  - B687  # django_csrf_cookie_path
+  - B688  # django_csrf_cookie_secure
+  - B689  # django_csrf_cookie_httponly
+  - B690  # django_csrf_cookie_samesite
+  - B691  # django_csrf_cookie_domain
+  - B692  # django_csrf_cookie_path
+  - B693  # django_csrf_cookie_secure
+  - B694  # django_csrf_cookie_httponly
+  - B695  # django_csrf_cookie_samesite
+  - B696  # django_csrf_cookie_domain
+  - B697  # django_csrf_cookie_path
+  - B698  # django_csrf_cookie_secure
+  - B699  # django_csrf_cookie_httponly
+  - B700  # django_csrf_cookie_samesite
+  - B701  # jinja2_autoescape
+  - B702  # django_mark_safe
+  - B703  # django_nevercache
+  - B704  # django_httpresponse_redirect
+  - B705  # django_csrf_cookie_secure
+  - B706  # django_csrf_cookie_httponly
+  - B707  # django_csrf_cookie_samesite
+  - B708  # django_csrf_cookie_domain
+  - B709  # django_csrf_cookie_path
+  - B710  # django_csrf_cookie_secure
+  - B711  # django_csrf_cookie_httponly
+  - B712  # django_csrf_cookie_samesite
+  - B713  # django_csrf_cookie_domain
+  - B714  # django_csrf_cookie_path
+  - B715  # django_csrf_cookie_secure
+  - B716  # django_csrf_cookie_httponly
+  - B717  # django_csrf_cookie_samesite
+  - B718  # django_csrf_cookie_domain
+  - B719  # django_csrf_cookie_path
+  - B720  # django_csrf_cookie_secure
+  - B721  # django_csrf_cookie_httponly
+  - B722  # django_csrf_cookie_samesite
+  - B723  # django_csrf_cookie_domain
+  - B724  # django_csrf_cookie_path
+  - B725  # django_csrf_cookie_secure
+  - B726  # django_csrf_cookie_httponly
+  - B727  # django_csrf_cookie_samesite
+  - B728  # django_csrf_cookie_domain
+  - B729  # django_csrf_cookie_path
+  - B730  # django_csrf_cookie_secure
+  - B731  # django_csrf_cookie_httponly
+  - B732  # django_csrf_cookie_samesite
+  - B733  # django_csrf_cookie_domain
+  - B734  # django_csrf_cookie_path
+  - B735  # django_csrf_cookie_secure
+  - B736  # django_csrf_cookie_httponly
+  - B737  # django_csrf_cookie_samesite
+  - B738  # django_csrf_cookie_domain
+  - B739  # django_csrf_cookie_path
+  - B740  # django_csrf_cookie_secure
+  - B741  # django_csrf_cookie_httponly
+  - B742  # django_csrf_cookie_samesite
+  - B743  # django_csrf_cookie_domain
+  - B744  # django_csrf_cookie_path
+  - B745  # django_csrf_cookie_secure
+  - B746  # django_csrf_cookie_httponly
+  - B747  # django_csrf_cookie_samesite
+  - B748  # django_csrf_cookie_domain
+  - B749  # django_csrf_cookie_path
+  - B750  # django_csrf_cookie_secure
+  - B751  # django_csrf_cookie_httponly
+  - B752  # django_csrf_cookie_samesite
+  - B753  # django_csrf_cookie_domain
+  - B754  # django_csrf_cookie_path
+  - B755  # django_csrf_cookie_secure
+  - B756  # django_csrf_cookie_httponly
+  - B757  # django_csrf_cookie_samesite
+  - B758  # django_csrf_cookie_domain
+  - B759  # django_csrf_cookie_path
+  - B760  # django_csrf_cookie_secure
+  - B761  # django_csrf_cookie_httponly
+  - B762  # django_csrf_cookie_samesite
+  - B763  # django_csrf_cookie_domain
+  - B764  # django_csrf_cookie_path
+  - B765  # django_csrf_cookie_secure
+  - B766  # django_csrf_cookie_httponly
+  - B767  # django_csrf_cookie_samesite
+  - B768  # django_csrf_cookie_domain
+  - B769  # django_csrf_cookie_path
+  - B770  # django_csrf_cookie_secure
+  - B771  # django_csrf_cookie_httponly
+  - B772  # django_csrf_cookie_samesite
+  - B773  # django_csrf_cookie_domain
+  - B774  # django_csrf_cookie_path
+  - B775  # django_csrf_cookie_secure
+  - B404# import_subprocess
+  - B405# import_xml_etree
+  - B406# import_xml_sax
+  - B407# import_xml_expat
+  - B408# import_xml_minidom
+  - B409# import_xml_pulldom
+  - B410# import_lxml
+  - B411# import_xmlrpclib
+  - B412# import_httpoxy
+  - B413# import_pycrypto
+  - B415# import_pycrypto
+  - B501# request_with_no_cert_validation
+  - B502# ssl_with_bad_version
+  - B503# ssl_with_bad_defaults
+  - B504  # ssl_with_no_version
+  - B505  # weak_cryptographic_key
+  - B506  # yaml_load
+  - B507  # ssh_no_host_key_verification
+  - B508  # snmp_insecure_version
+  - B509  # snmp_weak_cryptography
+  - B601  # paramiko_calls
+  - B602  # subprocess_popen_with_shell_equals_true
+  - B603  # subprocess_without_shell_equals_true
+  - B604  # any_other_function_with_shell_equals_true
+  - B605  # start_process_with_a_shell
+  - B606  # start_process_with_no_shell
+  - B607  # start_process_with_partial_path
+  - B608  # hardcoded_sql_expressions
+  - B609  # linux_commands_wildcard_injection
+  - B610  # django_extra_used
+  - B611  # django_rawsql_used
+  - B612  # expression_in_python_use
+  - B613  # expression_in_jinja2_template
+  - B614  # flask_cache_config
+  - B615  # django_mark_safe
+  - B616  # django_httpresponse_redirect
+  - B617  # django_nevercache
+  - B618  # django_csrf_cookie_secure
+  - B619  # django_csrf_cookie_httponly
+  - B620  # django_csrf_cookie_samesite
+  - B621  # django_csrf_cookie_domain
+  - B622  # django_csrf_cookie_path
+  - B623  # django_csrf_cookie_secure
+  - B624  # django_csrf_cookie_httponly
+  - B625  # django_csrf_cookie_samesite
+  - B626  # django_csrf_cookie_domain
+  - B627  # django_csrf_cookie_path
+  - B628  # django_csrf_cookie_secure
+  - B629  # django_csrf_cookie_httponly
+  - B630  # django_csrf_cookie_samesite
+  - B631  # django_csrf_cookie_domain
+  - B632  # django_csrf_cookie_path
+  - B633  # django_csrf_cookie_secure
+  - B634  # django_csrf_cookie_httponly
+  - B635  # django_csrf_cookie_samesite
+  - B636  # django_csrf_cookie_domain
+  - B637  # django_csrf_cookie_path
+  - B638  # django_csrf_cookie_secure
+  - B639  # django_csrf_cookie_httponly
+  - B640  # django_csrf_cookie_samesite
+  - B641  # django_csrf_cookie_domain
+  - B642  # django_csrf_cookie_path
+  - B643  # django_csrf_cookie_secure
+  - B644  # django_csrf_cookie_httponly
+  - B645  # django_csrf_cookie_samesite
+  - B646  # django_csrf_cookie_domain
+  - B647  # django_csrf_cookie_path
+  - B648  # django_csrf_cookie_secure
+  - B649  # django_csrf_cookie_httponly
+  - B650  # django_csrf_cookie_samesite
+  - B651  # django_csrf_cookie_domain
+  - B652  # django_csrf_cookie_path
+  - B653  # django_csrf_cookie_secure
+  - B654  # django_csrf_cookie_httponly
+  - B655  # django_csrf_cookie_samesite
+  - B656  # django_csrf_cookie_domain
+  - B657  # django_csrf_cookie_path
+  - B658  # django_csrf_cookie_secure
+  - B659  # django_csrf_cookie_httponly
+  - B660  # django_csrf_cookie_samesite
+  - B661  # django_csrf_cookie_domain
+  - B662  # django_csrf_cookie_path
+  - B663  # django_csrf_cookie_secure
+  - B664  # django_csrf_cookie_httponly
+  - B665  # django_csrf_cookie_samesite
+  - B666  # django_csrf_cookie_domain
+  - B667  # django_csrf_cookie_path
+  - B668  # django_csrf_cookie_secure
+  - B669  # django_csrf_cookie_httponly
+  - B670  # django_csrf_cookie_samesite
+  - B671  # django_csrf_cookie_domain
+  - B672  # django_csrf_cookie_path
+  - B673  # django_csrf_cookie_secure
+  - B674  # django_csrf_cookie_httponly
+  - B675  # django_csrf_cookie_samesite
+  - B676  # django_csrf_cookie_domain
+  - B677  # django_csrf_cookie_path
+  - B678  # django_csrf_cookie_secure
+  - B679  # django_csrf_cookie_httponly
+  - B680  # django_csrf_cookie_samesite
+  - B681  # django_csrf_cookie_domain
+  - B682  # django_csrf_cookie_path
+  - B683  # django_csrf_cookie_secure
+  - B684  # django_csrf_cookie_httponly
+  - B685  # django_csrf_cookie_samesite
+  - B686  # django_csrf_cookie_domain
+  - B687  # django_csrf_cookie_path
+  - B688  # django_csrf_cookie_secure
+  - B689  # django_csrf_cookie_httponly
+  - B690  # django_csrf_cookie_samesite
+  - B691  # django_csrf_cookie_domain
+  - B692  # django_csrf_cookie_path
+  - B693  # django_csrf_cookie_secure
+  - B694  # django_csrf_cookie_httponly
+  - B695  # django_csrf_cookie_samesite
+  - B802  # django_csrf_cookie_samesite
+  - B803  # django_csrf_cookie_domain
+  - B804  # django_csrf_cookie_path
+  - B805  # django_csrf_cookie_secure
+  - B806  # django_csrf_cookie_httponly
+  - B807  # django_csrf_cookie_samesite
+  - B808  # django_csrf_cookie_domain
+  - B809  # django_csrf_cookie_path
+  - B810  # django_csrf_cookie_secure
+  - B811  # django_csrf_cookie_httponly
+  - B812  # django_csrf_cookie_samesite
+  - B813  # django_csrf_cookie_domain
+  - B814  # django_csrf_cookie_path
+  - B815  # django_csrf_cookie_secure
+  - B816  # django_csrf_cookie_httponly
+  - B817  # django_csrf_cookie_samesite
+  - B818  # django_csrf_cookie_domain
+  - B819  # django_csrf_cookie_path
+  - B820  # django_csrf_cookie_secure
+  - B821  # django_csrf_cookie_httponly
+  - B822  # django_csrf_cookie_samesite
+  - B823  # django_csrf_cookie_domain
+  - B824  # django_csrf_cookie_path
+  - B825  # django_csrf_cookie_secure
+  - B826  # django_csrf_cookie_httponly
+  - B827  # django_csrf_cookie_samesite
+  - B828  # django_csrf_cookie_domain
+  - B829  # django_csrf_cookie_path
+  - B830  # django_csrf_cookie_secure
+  - B831  # django_csrf_cookie_httponly
+  - B832  # django_csrf_cookie_samesite
+  - B833  # django_csrf_cookie_domain
+  - B834  # django_csrf_cookie_path
+  - B835  # django_csrf_cookie_secure
+  - B836  # django_csrf_cookie_httponly
+  - B837  # django_csrf_cookie_samesite
+  - B838  # django_csrf_cookie_domain
+  - B839  # django_csrf_cookie_path
+  - B840  # django_csrf_cookie_secure
+  - B841  # django_csrf_cookie_httponly
+  - B842  # django_csrf_cookie_samesite
+  - B843  # django_csrf_cookie_domain
+  - B844  # django_csrf_cookie_path
+  - B845  # django_csrf_cookie_secure
+  - B846  # django_csrf_cookie_httponly
+  - B847  # django_csrf_cookie_samesite
+  - B848  # django_csrf_cookie_domain
+  - B849  # django_csrf_cookie_path
+  - B850  # django_csrf_cookie_secure
+  - B851  # django_csrf_cookie_httponly
+  - B852  # django_csrf_cookie_samesite
+  - B853  # django_csrf_cookie_domain
+  - B854  # django_csrf_cookie_path
+  - B855  # django_csrf_cookie_secure
+  - B856  # django_csrf_cookie_httponly
+  - B857  # django_csrf_cookie_samesite
+  - B858  # django_csrf_cookie_domain
+  - B859  # django_csrf_cookie_path
+  - B860  # django_csrf_cookie_secure
+  - B861  # django_csrf_cookie_httponly
+  - B862  # django_csrf_cookie_samesite
+  - B863  # django_csrf_cookie_domain
+  - B864  # django_csrf_cookie_path
+  - B865  # django_csrf_cookie_secure
+  - B866  # django_csrf_cookie_httponly
+  - B867  # django_csrf_cookie_samesite
+  - B868  # django_csrf_cookie_domain
+  - B869  # django_csrf_cookie_path
+  - B870  # django_csrf_cookie_secure
+  - B871  # django_csrf_cookie_httponly
+  - B872  # django_csrf_cookie_samesite
+  - B873  # django_csrf_cookie_domain
+  - B874  # django_csrf_cookie_path
+  - B875  # django_csrf_cookie_secure
+  - B876  # django_csrf_cookie_httponly
+  - B877  # django_csrf_cookie_samesite
+  - B878  # django_csrf_cookie_domain
+  - B879  # django_csrf_cookie_path
+  - B880  # django_csrf_cookie_secure
+  - B881  # django_csrf_cookie_httponly
+  - B882  # django_csrf_cookie_samesite
+  - B883  # django_csrf_cookie_domain
+  - B884  # django_csrf_cookie_path
+  - B885  # django_csrf_cookie_secure
+  - B886  # django_csrf_cookie_httponly
+  - B887  # django_csrf_cookie_samesite
+  - B888  # django_csrf_cookie_domain
+  - B889  # django_csrf_cookie_path
+  - B890  # django_csrf_cookie_secure
+  - B891  # django_csrf_cookie_httponly
+  - B892  # django_csrf_cookie_samesite
+  - B893  # django_csrf_cookie_domain
+  - B894  # django_csrf_cookie_path
+  - B895  # django_csrf_cookie_secure
+  - B896  # django_csrf_cookie_httponly
+  - B897  # django_csrf_cookie_samesite
+  - B898  # django_csrf_cookie_domain
+  - B899  # django_csrf_cookie_path
+  - B900  # django_csrf_cookie_secure
+  - B1001  # django_csrf_cookie_httponly
+  - B1002  # django_csrf_cookie_samesite
+  - B1003  # django_csrf_cookie_domain
+  - B1004  # django_csrf_cookie_path
+  - B1005  # django_csrf_cookie_secure
+  - B1006  # django_csrf_cookie_httponly
+  - B1007  # django_csrf_cookie_samesite
+  - B1008  # django_csrf_cookie_domain
+  - B1009  # django_csrf_cookie_path
+  - B1010  # django_csrf_cookie_secure
+  - B1011  # django_csrf_cookie_httponly
+  - B1012  # django_csrf_cookie_samesite
+  - B1013  # django_csrf_cookie_domain
+  - B1014  # django_csrf_cookie_path
+  - B1015  # django_csrf_cookie_secure
+  - B1016  # django_csrf_cookie_httponly
+  - B1017  # django_csrf_cookie_samesite
+  - B1018  # django_csrf_cookie_domain
+  - B1019  # django_csrf_cookie_path
+  - B1020  # django_csrf_cookie_secure
+  - B1021  # django_csrf_cookie_httponly
+  - B1022  # django_csrf_cookie_samesite
+  - B1023  # django_csrf_cookie_domain
+  - B1024  # django_csrf_cookie_path
+  - B1025  # django_csrf_cookie_secure
+  - B1026  # django_csrf_cookie_httponly
+  - B1027  # django_csrf_cookie_samesite
+  - B1028  # django_csrf_cookie_domain
+  - B1029  # django_csrf_cookie_path
+  - B1030  # django_csrf_cookie_secure
+  - B1031  # django_csrf_cookie_httponly
+  - B1032  # django_csrf_cookie_samesite
+  - B1033  # django_csrf_cookie_domain
+  - B1034  # django_csrf_cookie_path
+  - B1035  # django_csrf_cookie_secure
+  - B1036  # django_csrf_cookie_httponly
+  - B1037  # django_csrf_cookie_samesite
+  - B1038  # django_csrf_cookie_domain
+  - B1039  # django_csrf_cookie_path
+  - B1040  # django_csrf_cookie_secure
+  - B1041  # django_csrf_cookie_httponly
+  - B1042  # django_csrf_cookie_samesite
+  - B1043  # django_csrf_cookie_domain
+  - B1044  # django_csrf_cookie_path
+  - B1045  # django_csrf_cookie_secure
+  - B1046  # django_csrf_cookie_httponly
+  - B1047  # django_csrf_cookie_samesite
+  - B1048  # django_csrf_cookie_domain
+  - B1049  # django_csrf_cookie_path
+  - B1050  # django_csrf_cookie_secure
+  - B1051  # django_csrf_cookie_httponly
+  - B1052  # django_csrf_cookie_samesite
+  - B1053  # django_csrf_cookie_domain
+  - B1054  # django_csrf_cookie_path
+  - B1055  # django_csrf_cookie_secure
+  - B1056  # django_csrf_cookie_httponly
+  - B1057  # django_csrf_cookie_samesite
+  - B1058  # django_csrf_cookie_domain
+  - B1059  # django_csrf_cookie_path
+  - B1060  # django_csrf_cookie_secure
+  - B1061  # django_csrf_cookie_httponly
+  - B1062  # django_csrf_cookie_samesite
+  - B1063  # django_csrf_cookie_domain
+  - B1064  # django_csrf_cookie_path
+  - B1065  # django_csrf_cookie_secure
+  - B1066  # django_csrf_cookie_httponly
+  - B1067  # django_csrf_cookie_samesite
+  - B1068  # django_csrf_cookie_domain
+  - B1069  # django_csrf_cookie_path
+  - B1070  # django_csrf_cookie_secure
+  - B971  # django_csrf_cookie_httponly
+  - B972  # django_csrf_cookie_samesite
+  - B973  # django_csrf_cookie_domain
+  - B974  # django_csrf_cookie_path
+  - B975  # django_csrf_cookie_secure
+  - B977  # django_csrf_cookie_samesite
+  - B978  # django_csrf_cookie_domain
+  - B979  # django_csrf_cookie_path
+  - B980  # django_csrf_cookie_secure
+  - B981  # django_csrf_cookie_httponly
+  - B982  # django_csrf_cookie_samesite
+  - B983  # django_csrf_cookie_domain
+  - B984  # django_csrf_cookie_path
+  - B985  # django_csrf_cookie_secure
+  - B986  # django_csrf_cookie_httponly
+  - B987  # django_csrf_cookie_samesite
+  - B988  # django_csrf_cookie_domain
+  - B989  # django_csrf_cookie_path
+  - B990  # django_csrf_cookie_secure
+  - B991  # django_csrf_cookie_httponly
+  - B992  # django_csrf_cookie_samesite
+  - B993  # django_csrf_cookie_domain
+  - B994  # django_csrf_cookie_path
+  - B995  # django_csrf_cookie_secure
+  - B996  # django_csrf_cookie_httponly
+  - B997  # django_csrf_cookie_samesite
+  - B998  # django_csrf_cookie_domain
+  - B999  # django_csrf_cookie_path
+  - B1000  # django_csrf_cookie_secure
+  - B1001  # django_csrf_cookie_httponly
+  - B1002  # django_csrf_cookie_samesite
+  - B1003  # django_csrf_cookie_domain
+  - B1004  # django_csrf_cookie_path
+  - B1005  # django_csrf_cookie_secure
+  - B1006  # django_csrf_cookie_httponly
+
+# Enable/disable test groups
+# Default: all tests are enabled
+test_plugin_import_name: false
+
+# Aggressive test mode (enables additional tests)
+# Default: False
+aggressive: false
+
+# Number of processes to use for running tests in parallel
+# Default: 1 (no parallelism)
+processes: 4
+
+# Show progress bar during scan
+# Default: True
+show_progress: true
+
+# Output format (txt, json, custom, screen, or a custom formatter)
+# Default: screen
+output_format: screen
+
+# Output file (if not using default stdout)
+# Default: None (stdout)
+output_file: null
+
+# Verbosity level (1-3)
+# Default: 1
+verbose: 1
+
+# Debug output (for troubleshooting)
+# Default: False
+debug: false
+
+# Recursively scan directories
+# Default: True
+recursive: true
+
+# Follow symlinks when scanning
+# Default: False
+follow_links: false
+
+# Include only files matching these patterns (comma-separated)
+# Default: None (include all files)
+include: '*.py,*.pyw,*.pyx,*.pxd,*.pxi,*.pyi,*.pyx,*.pxd,*.pxi,*.pyi,*.pyx,*.pxd,*.pxi,*.pyi,*.pyx,*.pxd,*.pxi,*.pyi'
+
+# Exclude files/directories matching these patterns (comma-separated)
+# This is in addition to exclude_dirs
+# Default: None (no additional exclusions)
+exclude: '*/tests/*,*/test_*.py,*/_test_*.py,*/conftest.py,*/setup.py,*/__init__.py,*/_version.py'
+
+# Confidence level threshold (low, medium, high)
+# Default: medium
+confidence: high
+
+# Severity level threshold (low, medium, high, critical)
+# Default: low
+severity: medium
+
+# List of plugins to run (comma-separated)
+# Default: None (run all plugins)
+# plugins: 'bandit.plugins.bandit_blacklist,bandit.plugins.bandit_builtins'
+
+# List of plugin directories to load
+# Default: None (use built-in plugins)
+# plugin_dirs: /path/to/plugins
+
+# Profile to use (from bandit.core.config)
+# Default: None (use default profile)
+# profile: my_profile
+
+# Path to a baseline file to compare against
+# Default: None
+# baseline: .bandit.baseline
+
+# Create a baseline file
+# Default: False
+# create_baseline: false
+
+# Path to store the baseline file
+# Default: .bandit.baseline
+# baseline_file: .bandit.baseline

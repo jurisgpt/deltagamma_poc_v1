@@ -3,14 +3,15 @@
 Train a graph autoencoder (using GAT) to generate node embeddings and save them to CSV.
 """
 import argparse
+
+import pandas as pd
 import torch
 import torch.nn.functional as F
-import pandas as pd
 from torch_geometric.data import Data
 from torch_geometric.nn import GAE, GATConv
 
 
-class GATEncoder(torch.nn.Module):
+class GATEncoder(torch.nn.Module):  # type: ignore
     """
     Graph Attention Network (GAT) encoder for unsupervised link reconstruction.
     """
@@ -53,10 +54,8 @@ def extract_embeddings(
     - epochs: number of training epochs.
     - lr: learning rate for optimizer.
     """
-    # Load graph data
-    # Using weights_only=False is necessary for PyTorch Geometric Data objects
-    # Only load from trusted sources
-    data: Data = torch.load(graph_file, weights_only=False)  # nosec B614
+    # Load graph data (ensure full object unpickling on PyTorch >=2.6)
+    data: Data = torch.load(graph_file, weights_only=False)
     x, edge_index = data.x, data.edge_index
 
     # Initialize GAT encoder and autoencoder wrapper

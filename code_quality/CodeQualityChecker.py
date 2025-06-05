@@ -12,13 +12,12 @@ This script performs various code quality checks on Python source files using mu
 - bandit: Security linter for Python code
 """
 
-import os
-import sys
-import subprocess  # nosec - Used for running code quality tools as subprocesses
 import argparse
-from pathlib import Path
-from typing import List, Dict, Optional, Tuple
+import os
+import subprocess  # nosec - Used for running code quality tools as subprocesses
+import sys
 from datetime import datetime
+from typing import Dict, List, Optional, Tuple
 
 # Default configuration
 DEFAULT_EXCLUDES = ["venv", ".git", "__pycache__", ".pytest_cache", ".mypy_cache"]

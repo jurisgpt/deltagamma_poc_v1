@@ -1,0 +1,40 @@
+# Ensure consistent line endings
+* text=auto eol=lf
+
+# Declare files that will always have CRLF line endings on checkout
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+*.ps1           text eol=crlf
+*.sh            text eol=lf
+
+# Denote all files that are truly binary and should not be modified
+*.png           binary
+*.jpg           binary
+*.jpeg          binary
+*.gif           binary
+*.ico           binary
+*.mov           binary
+*.mp4           binary
+*.mp3           binary
+*.ttf           binary
+*.woff          binary
+*.woff2         binary
+*.pdf           binary
+*.zip           binary
+*.gz            binary
+*.bz2           binary
+*.tar           binary
+*.pyc           binary
+*.so            binary
+*.dll           binary
+*.exe           binary
+*.dylib         binary
+*.pyd           binary
+*.pth           binary
+*.egg           binary
+*.pkl           binary
+*.h5            binary
+*.pt            binary
+*.pth           binary
+*.bin           binary
+*.onnx          binary
