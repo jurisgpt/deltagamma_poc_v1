@@ -1,0 +1,629 @@
+Code Quality Report - 2025-06-04 18:26:49
+==================================================
+
+PYLINT Results (Exit Code: 30):
+----------------------------------------
+************* Module embedding_extractor
+embedding_extractor.py:121:0: C0304: Final newline missing (missing-final-newline)
+embedding_extractor.py:6:0: E0401: Unable to import 'torch' (import-error)
+embedding_extractor.py:7:0: E0401: Unable to import 'torch.nn.functional' (import-error)
+embedding_extractor.py:8:0: E0401: Unable to import 'pandas' (import-error)
+embedding_extractor.py:9:0: E0401: Unable to import 'torch_geometric.data' (import-error)
+embedding_extractor.py:10:0: E0401: Unable to import 'torch_geometric.nn' (import-error)
+embedding_extractor.py:24:4: C0116: Missing function or method docstring (missing-function-docstring)
+embedding_extractor.py:13:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+embedding_extractor.py:32:0: R0913: Too many arguments (6/5) (too-many-arguments)
+embedding_extractor.py:32:0: R0917: Too many positional arguments (6/5) (too-many-positional-arguments)
+embedding_extractor.py:32:0: R0914: Too many local variables (19/15) (too-many-locals)
+embedding_extractor.py:92:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module build_test_graph
+build_test_graph.py:24:35: C0303: Trailing whitespace (trailing-whitespace)
+build_test_graph.py:55:0: C0303: Trailing whitespace (trailing-whitespace)
+build_test_graph.py:62:52: C0303: Trailing whitespace (trailing-whitespace)
+build_test_graph.py:63:0: C0303: Trailing whitespace (trailing-whitespace)
+build_test_graph.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+build_test_graph.py:1:0: E0401: Unable to import 'torch' (import-error)
+build_test_graph.py:2:0: E0401: Unable to import 'numpy' (import-error)
+build_test_graph.py:3:0: E0401: Unable to import 'pandas' (import-error)
+build_test_graph.py:4:0: E0401: Unable to import 'torch_geometric.data' (import-error)
+build_test_graph.py:5:0: E0401: Unable to import 'sklearn.preprocessing' (import-error)
+build_test_graph.py:7:0: R0914: Too many local variables (16/15) (too-many-locals)
+************* Module train_model
+train_model.py:23:0: C0301: Line too long (113/100) (line-too-long)
+train_model.py:24:0: C0301: Line too long (111/100) (line-too-long)
+train_model.py:28:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:31:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:38:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:48:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:53:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:54:0: C0301: Line too long (108/100) (line-too-long)
+train_model.py:62:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:73:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:82:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:85:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:104:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:116:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:119:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:122:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:131:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:134:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:137:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:141:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:144:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:147:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:164:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:166:0: C0301: Line too long (101/100) (line-too-long)
+train_model.py:167:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:172:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:176:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:187:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:191:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:197:0: C0303: Trailing whitespace (trailing-whitespace)
+train_model.py:8:0: E0401: Unable to import 'pandas' (import-error)
+train_model.py:9:0: E0401: Unable to import 'numpy' (import-error)
+train_model.py:10:0: E0401: Unable to import 'xgboost' (import-error)
+train_model.py:11:0: E0401: Unable to import 'sklearn.model_selection' (import-error)
+train_model.py:14:0: E0401: Unable to import 'sklearn.metrics' (import-error)
+train_model.py:15:0: E0401: Unable to import 'scipy.stats' (import-error)
+train_model.py:16:0: E0401: Unable to import 'joblib' (import-error)
+train_model.py:20:0: R0914: Too many local variables (18/15) (too-many-locals)
+train_model.py:60:4: C0103: Variable name "X" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:71:4: C0103: Variable name "X_train" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:71:13: C0103: Variable name "X_test" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:76:25: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:88:26: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:125:18: C0103: Argument name "X_train" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:125:36: C0103: Argument name "X_test" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:166:4: C0103: Variable name "X_train" doesn't conform to snake_case naming style (invalid-name)
+train_model.py:166:13: C0103: Variable name "X_test" doesn't conform to snake_case naming style (invalid-name)
+************* Module graph_builder
+graph_builder.py:102:0: C0304: Final newline missing (missing-final-newline)
+graph_builder.py:7:0: E0401: Unable to import 'torch' (import-error)
+graph_builder.py:8:0: E0401: Unable to import 'numpy' (import-error)
+graph_builder.py:9:0: E0401: Unable to import 'pandas' (import-error)
+graph_builder.py:10:0: E0401: Unable to import 'sklearn.preprocessing' (import-error)
+graph_builder.py:11:0: E0401: Unable to import 'torch_geometric.data' (import-error)
+graph_builder.py:82:0: C0116: Missing function or method docstring (missing-function-docstring)
+graph_builder.py:5:0: W0611: Unused import os (unused-import)
+************* Module main
+main.py:3:0: C0301: Line too long (102/100) (line-too-long)
+main.py:103:0: C0304: Final newline missing (missing-final-newline)
+main.py:12:0: R0913: Too many arguments (10/5) (too-many-arguments)
+main.py:12:0: R0917: Too many positional arguments (10/5) (too-many-positional-arguments)
+main.py:42:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module code_quality.CodeQualityChecker
+code_quality/CodeQualityChecker.py:6:0: C0301: Line too long (108/100) (line-too-long)
+code_quality/CodeQualityChecker.py:49:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:55:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:59:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:67:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:76:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:84:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:92:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:100:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:108:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:116:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:125:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:127:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:133:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:137:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:151:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:153:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:156:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:160:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:162:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:165:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:168:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:171:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:174:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:177:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:180:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:183:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:186:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:190:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:192:0: C0303: Trailing whitespace (trailing-whitespace)
+code_quality/CodeQualityChecker.py:1:0: C0103: Module name "CodeQualityChecker" doesn't conform to snake_case naming style (invalid-name)
+code_quality/CodeQualityChecker.py:41:11: W0718: Catching too general exception Exception (broad-exception-caught)
+code_quality/CodeQualityChecker.py:63:33: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:72:31: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:80:38: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:88:33: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:96:38: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:104:37: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:112:33: W0613: Unused argument 'report_file' (unused-argument)
+code_quality/CodeQualityChecker.py:19:0: W0611: Unused Path imported from pathlib (unused-import)
+
+------------------------------------------------------------------
+Your code has been rated at 4.09/10 (previous run: 6.50/10, -2.41)
+
+
+
+MYPY Results (Exit Code: 1):
+----------------------------------------
+build_test_graph.py:1: error: Cannot find implementation or library stub for module named "torch"  [import-not-found]
+build_test_graph.py:2: error: Cannot find implementation or library stub for module named "numpy"  [import-not-found]
+build_test_graph.py:3: error: Library stubs not installed for "pandas"  [import-untyped]
+build_test_graph.py:4: error: Cannot find implementation or library stub for module named "torch_geometric.data"  [import-not-found]
+build_test_graph.py:5: error: Cannot find implementation or library stub for module named "sklearn.preprocessing"  [import-not-found]
+graph_builder.py:7: error: Cannot find implementation or library stub for module named "torch"  [import-not-found]
+graph_builder.py:8: error: Cannot find implementation or library stub for module named "numpy"  [import-not-found]
+graph_builder.py:9: error: Library stubs not installed for "pandas"  [import-untyped]
+graph_builder.py:10: error: Cannot find implementation or library stub for module named "sklearn.preprocessing"  [import-not-found]
+graph_builder.py:11: error: Cannot find implementation or library stub for module named "torch_geometric.data"  [import-not-found]
+train_model.py:8: error: Library stubs not installed for "pandas"  [import-untyped]
+train_model.py:9: error: Cannot find implementation or library stub for module named "numpy"  [import-not-found]
+train_model.py:10: error: Cannot find implementation or library stub for module named "xgboost"  [import-not-found]
+train_model.py:11: error: Cannot find implementation or library stub for module named "sklearn.model_selection"  [import-not-found]
+train_model.py:14: error: Cannot find implementation or library stub for module named "sklearn.metrics"  [import-not-found]
+train_model.py:15: error: Library stubs not installed for "scipy.stats"  [import-untyped]
+train_model.py:15: note: Hint: "python3 -m pip install scipy-stubs"
+train_model.py:16: error: Cannot find implementation or library stub for module named "joblib"  [import-not-found]
+embedding_extractor.py:6: error: Cannot find implementation or library stub for module named "torch"  [import-not-found]
+embedding_extractor.py:7: error: Cannot find implementation or library stub for module named "torch.nn.functional"  [import-not-found]
+embedding_extractor.py:7: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+embedding_extractor.py:7: error: Cannot find implementation or library stub for module named "torch.nn"  [import-not-found]
+embedding_extractor.py:8: error: Library stubs not installed for "pandas"  [import-untyped]
+embedding_extractor.py:8: note: Hint: "python3 -m pip install pandas-stubs"
+embedding_extractor.py:8: note: (or run "mypy --install-types" to install all missing stub packages)
+embedding_extractor.py:9: error: Cannot find implementation or library stub for module named "torch_geometric.data"  [import-not-found]
+embedding_extractor.py:10: error: Cannot find implementation or library stub for module named "torch_geometric.nn"  [import-not-found]
+code_quality/CodeQualityChecker.py:45: error: Incompatible default for argument "exclude" (default has type "None", argument has type "list[str]")  [assignment]
+code_quality/CodeQualityChecker.py:45: note: PEP 484 prohibits implicit Optional. Accordingly, mypy has changed its default to no_implicit_optional=True
+code_quality/CodeQualityChecker.py:45: note: Use https://github.com/hauntsaninja/no_implicit_optional to automatically upgrade your codebase
+Found 24 errors in 5 files (checked 6 source files)
+
+
+BLACK Results (Exit Code: 1):
+----------------------------------------
+would reformat build_test_graph.py
+would reformat graph_builder.py
+would reformat main.py
+would reformat embedding_extractor.py
+would reformat train_model.py
+would reformat code_quality/CodeQualityChecker.py
+
+Oh no! 💥 💔 💥
+6 files would be reformatted.
+
+
+FLAKE8 Results (Exit Code: 1):
+----------------------------------------
+./build_test_graph.py:5:80: E501 line too long (81 > 79 characters)
+./build_test_graph.py:7:1: E302 expected 2 blank lines, found 1
+./build_test_graph.py:7:55: E231 missing whitespace after ','
+./build_test_graph.py:7:68: E231 missing whitespace after ','
+./build_test_graph.py:7:80: E501 line too long (96 > 79 characters)
+./build_test_graph.py:9:80: E501 line too long (85 > 79 characters)
+./build_test_graph.py:10:1: W293 blank line contains whitespace
+./build_test_graph.py:14:80: E501 line too long (80 > 79 characters)
+./build_test_graph.py:24:36: W291 trailing whitespace
+./build_test_graph.py:28:80: E501 line too long (81 > 79 characters)
+./build_test_graph.py:33:30: E231 missing whitespace after ','
+./build_test_graph.py:33:32: E231 missing whitespace after ','
+./build_test_graph.py:33:35: E231 missing whitespace after ','
+./build_test_graph.py:33:45: E231 missing whitespace after ','
+./build_test_graph.py:37:80: E501 line too long (86 > 79 characters)
+./build_test_graph.py:54:80: E501 line too long (87 > 79 characters)
+./build_test_graph.py:55:1: W293 blank line contains whitespace
+./build_test_graph.py:60:32: W291 trailing whitespace
+./build_test_graph.py:62:53: W291 trailing whitespace
+./build_test_graph.py:63:1: W293 blank line contains whitespace
+./build_test_graph.py:65:80: E501 line too long (94 > 79 characters)
+./build_test_graph.py:66:80: E501 line too long (87 > 79 characters)
+./build_test_graph.py:67:80: E501 line too long (100 > 79 characters)
+./build_test_graph.py:73:1: E302 expected 2 blank lines, found 1
+./build_test_graph.py:83:1: E305 expected 2 blank lines after class or function definition, found 1
+./code_quality/CodeQualityChecker.py:5:80: E501 line too long (93 > 79 characters)
+./code_quality/CodeQualityChecker.py:6:80: E501 line too long (108 > 79 characters)
+./code_quality/CodeQualityChecker.py:19:1: F401 'pathlib.Path' imported but unused
+./code_quality/CodeQualityChecker.py:24:80: E501 line too long (82 > 79 characters)
+./code_quality/CodeQualityChecker.py:46:80: E501 line too long (85 > 79 characters)
+./code_quality/CodeQualityChecker.py:49:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:55:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:59:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:67:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:76:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:80:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:84:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:88:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:92:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:96:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:100:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:104:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:108:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:112:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:116:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:120:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:120:80: E501 line too long (80 > 79 characters)
+./code_quality/CodeQualityChecker.py:123:80: E501 line too long (90 > 79 characters)
+./code_quality/CodeQualityChecker.py:125:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:127:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:133:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:137:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:139:80: E501 line too long (83 > 79 characters)
+./code_quality/CodeQualityChecker.py:142:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:144:80: E501 line too long (92 > 79 characters)
+./code_quality/CodeQualityChecker.py:146:80: E501 line too long (86 > 79 characters)
+./code_quality/CodeQualityChecker.py:151:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:153:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:156:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:160:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:162:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:165:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:168:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:171:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:174:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:177:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:180:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:183:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:186:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:188:80: E501 line too long (87 > 79 characters)
+./code_quality/CodeQualityChecker.py:190:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:192:1: W293 blank line contains whitespace
+./embedding_extractor.py:3:80: E501 line too long (87 > 79 characters)
+./embedding_extractor.py:20:80: E501 line too long (84 > 79 characters)
+./embedding_extractor.py:22:80: E501 line too long (90 > 79 characters)
+./embedding_extractor.py:39:80: E501 line too long (82 > 79 characters)
+./embedding_extractor.py:42:80: E501 line too long (88 > 79 characters)
+./embedding_extractor.py:44:80: E501 line too long (80 > 79 characters)
+./embedding_extractor.py:69:80: E501 line too long (81 > 79 characters)
+./embedding_extractor.py:121:11: W292 no newline at end of file
+./graph_builder.py:5:1: F401 'os' imported but unused
+./graph_builder.py:19:80: E501 line too long (86 > 79 characters)
+./graph_builder.py:20:80: E501 line too long (92 > 79 characters)
+./graph_builder.py:33:80: E501 line too long (94 > 79 characters)
+./graph_builder.py:36:80: E501 line too long (99 > 79 characters)
+./graph_builder.py:49:80: E501 line too long (87 > 79 characters)
+./graph_builder.py:58:80: E501 line too long (81 > 79 characters)
+./graph_builder.py:63:80: E501 line too long (91 > 79 characters)
+./graph_builder.py:65:80: E501 line too long (82 > 79 characters)
+./graph_builder.py:102:11: W292 no newline at end of file
+./main.py:3:80: E501 line too long (102 > 79 characters)
+./main.py:53:80: E501 line too long (82 > 79 characters)
+./main.py:56:80: E501 line too long (82 > 79 characters)
+./main.py:57:80: E501 line too long (80 > 79 characters)
+./main.py:58:80: E501 line too long (84 > 79 characters)
+./main.py:103:11: W292 no newline at end of file
+./train_model.py:4:80: E501 line too long (84 > 79 characters)
+./train_model.py:14:80: E501 line too long (83 > 79 characters)
+./train_model.py:20:1: E303 too many blank lines (3)
+./train_model.py:23:80: E501 line too long (113 > 79 characters)
+./train_model.py:24:80: E501 line too long (111 > 79 characters)
+./train_model.py:28:1: W293 blank line contains whitespace
+./train_model.py:31:1: W293 blank line contains whitespace
+./train_model.py:33:80: E501 line too long (92 > 79 characters)
+./train_model.py:38:1: W293 blank line contains whitespace
+./train_model.py:39:80: E501 line too long (97 > 79 characters)
+./train_model.py:45:80: E501 line too long (91 > 79 characters)
+./train_model.py:48:1: W293 blank line contains whitespace
+./train_model.py:49:80: E501 line too long (81 > 79 characters)
+./train_model.py:51:80: E501 line too long (95 > 79 characters)
+./train_model.py:52:80: E501 line too long (95 > 79 characters)
+./train_model.py:53:1: W293 blank line contains whitespace
+./train_model.py:54:80: E501 line too long (108 > 79 characters)
+./train_model.py:62:1: W293 blank line contains whitespace
+./train_model.py:67:1: E303 too many blank lines (3)
+./train_model.py:72:80: E501 line too long (92 > 79 characters)
+./train_model.py:73:1: W293 blank line contains whitespace
+./train_model.py:76:1: E302 expected 2 blank lines, found 1
+./train_model.py:81:80: E501 line too long (84 > 79 characters)
+./train_model.py:82:1: W293 blank line contains whitespace
+./train_model.py:85:1: W293 blank line contains whitespace
+./train_model.py:88:1: E302 expected 2 blank lines, found 1
+./train_model.py:97:80: E501 line too long (99 > 79 characters)
+./train_model.py:103:80: E501 line too long (85 > 79 characters)
+./train_model.py:104:1: W293 blank line contains whitespace
+./train_model.py:116:1: W293 blank line contains whitespace
+./train_model.py:119:1: W293 blank line contains whitespace
+./train_model.py:122:1: W293 blank line contains whitespace
+./train_model.py:125:1: E302 expected 2 blank lines, found 1
+./train_model.py:127:80: E501 line too long (81 > 79 characters)
+./train_model.py:131:1: W293 blank line contains whitespace
+./train_model.py:134:1: W293 blank line contains whitespace
+./train_model.py:137:1: W293 blank line contains whitespace
+./train_model.py:141:1: W293 blank line contains whitespace
+./train_model.py:144:1: W293 blank line contains whitespace
+./train_model.py:147:1: W293 blank line contains whitespace
+./train_model.py:150:1: E302 expected 2 blank lines, found 1
+./train_model.py:157:1: E302 expected 2 blank lines, found 1
+./train_model.py:164:1: W293 blank line contains whitespace
+./train_model.py:165:80: E501 line too long (80 > 79 characters)
+./train_model.py:166:80: E501 line too long (101 > 79 characters)
+./train_model.py:167:1: W293 blank line contains whitespace
+./train_model.py:170:80: E501 line too long (81 > 79 characters)
+./train_model.py:172:1: W293 blank line contains whitespace
+./train_model.py:173:80: E501 line too long (86 > 79 characters)
+./train_model.py:174:80: E501 line too long (85 > 79 characters)
+./train_model.py:176:1: W293 blank line contains whitespace
+./train_model.py:180:1: E302 expected 2 blank lines, found 1
+./train_model.py:187:1: W293 blank line contains whitespace
+./train_model.py:189:80: E501 line too long (98 > 79 characters)
+./train_model.py:190:80: E501 line too long (89 > 79 characters)
+./train_model.py:191:1: W293 blank line contains whitespace
+./train_model.py:193:80: E501 line too long (100 > 79 characters)
+./train_model.py:197:1: W293 blank line contains whitespace
+./train_model.py:201:1: E305 expected 2 blank lines after class or function definition, found 1
+
+
+PYCODESTYLE Results (Exit Code: 1):
+----------------------------------------
+./embedding_extractor.py:3:80: E501 line too long (87 > 79 characters)
+./embedding_extractor.py:20:80: E501 line too long (84 > 79 characters)
+./embedding_extractor.py:22:80: E501 line too long (90 > 79 characters)
+./embedding_extractor.py:39:80: E501 line too long (82 > 79 characters)
+./embedding_extractor.py:42:80: E501 line too long (88 > 79 characters)
+./embedding_extractor.py:44:80: E501 line too long (80 > 79 characters)
+./embedding_extractor.py:69:80: E501 line too long (81 > 79 characters)
+./embedding_extractor.py:121:11: W292 no newline at end of file
+./build_test_graph.py:5:80: E501 line too long (81 > 79 characters)
+./build_test_graph.py:7:1: E302 expected 2 blank lines, found 1
+./build_test_graph.py:7:55: E231 missing whitespace after ','
+./build_test_graph.py:7:68: E231 missing whitespace after ','
+./build_test_graph.py:7:80: E501 line too long (96 > 79 characters)
+./build_test_graph.py:9:80: E501 line too long (85 > 79 characters)
+./build_test_graph.py:10:1: W293 blank line contains whitespace
+./build_test_graph.py:14:80: E501 line too long (80 > 79 characters)
+./build_test_graph.py:24:36: W291 trailing whitespace
+./build_test_graph.py:28:80: E501 line too long (81 > 79 characters)
+./build_test_graph.py:33:30: E231 missing whitespace after ','
+./build_test_graph.py:33:32: E231 missing whitespace after ','
+./build_test_graph.py:33:35: E231 missing whitespace after ','
+./build_test_graph.py:33:45: E231 missing whitespace after ','
+./build_test_graph.py:37:80: E501 line too long (86 > 79 characters)
+./build_test_graph.py:54:80: E501 line too long (87 > 79 characters)
+./build_test_graph.py:55:1: W293 blank line contains whitespace
+./build_test_graph.py:60:32: W291 trailing whitespace
+./build_test_graph.py:62:53: W291 trailing whitespace
+./build_test_graph.py:63:1: W293 blank line contains whitespace
+./build_test_graph.py:65:80: E501 line too long (94 > 79 characters)
+./build_test_graph.py:66:80: E501 line too long (87 > 79 characters)
+./build_test_graph.py:67:80: E501 line too long (100 > 79 characters)
+./build_test_graph.py:73:1: E302 expected 2 blank lines, found 1
+./build_test_graph.py:83:1: E305 expected 2 blank lines after class or function definition, found 1
+./train_model.py:4:80: E501 line too long (84 > 79 characters)
+./train_model.py:14:80: E501 line too long (83 > 79 characters)
+./train_model.py:20:1: E303 too many blank lines (3)
+./train_model.py:23:80: E501 line too long (113 > 79 characters)
+./train_model.py:24:80: E501 line too long (111 > 79 characters)
+./train_model.py:28:1: W293 blank line contains whitespace
+./train_model.py:31:1: W293 blank line contains whitespace
+./train_model.py:33:80: E501 line too long (92 > 79 characters)
+./train_model.py:38:1: W293 blank line contains whitespace
+./train_model.py:39:80: E501 line too long (97 > 79 characters)
+./train_model.py:45:80: E501 line too long (91 > 79 characters)
+./train_model.py:48:1: W293 blank line contains whitespace
+./train_model.py:49:80: E501 line too long (81 > 79 characters)
+./train_model.py:51:80: E501 line too long (95 > 79 characters)
+./train_model.py:52:80: E501 line too long (95 > 79 characters)
+./train_model.py:53:1: W293 blank line contains whitespace
+./train_model.py:54:80: E501 line too long (108 > 79 characters)
+./train_model.py:62:1: W293 blank line contains whitespace
+./train_model.py:67:1: E303 too many blank lines (3)
+./train_model.py:72:80: E501 line too long (92 > 79 characters)
+./train_model.py:73:1: W293 blank line contains whitespace
+./train_model.py:76:1: E302 expected 2 blank lines, found 1
+./train_model.py:81:80: E501 line too long (84 > 79 characters)
+./train_model.py:82:1: W293 blank line contains whitespace
+./train_model.py:85:1: W293 blank line contains whitespace
+./train_model.py:88:1: E302 expected 2 blank lines, found 1
+./train_model.py:97:80: E501 line too long (99 > 79 characters)
+./train_model.py:103:80: E501 line too long (85 > 79 characters)
+./train_model.py:104:1: W293 blank line contains whitespace
+./train_model.py:116:1: W293 blank line contains whitespace
+./train_model.py:119:1: W293 blank line contains whitespace
+./train_model.py:122:1: W293 blank line contains whitespace
+./train_model.py:125:1: E302 expected 2 blank lines, found 1
+./train_model.py:127:80: E501 line too long (81 > 79 characters)
+./train_model.py:131:1: W293 blank line contains whitespace
+./train_model.py:134:1: W293 blank line contains whitespace
+./train_model.py:137:1: W293 blank line contains whitespace
+./train_model.py:141:1: W293 blank line contains whitespace
+./train_model.py:144:1: W293 blank line contains whitespace
+./train_model.py:147:1: W293 blank line contains whitespace
+./train_model.py:150:1: E302 expected 2 blank lines, found 1
+./train_model.py:157:1: E302 expected 2 blank lines, found 1
+./train_model.py:164:1: W293 blank line contains whitespace
+./train_model.py:165:80: E501 line too long (80 > 79 characters)
+./train_model.py:166:80: E501 line too long (101 > 79 characters)
+./train_model.py:167:1: W293 blank line contains whitespace
+./train_model.py:170:80: E501 line too long (81 > 79 characters)
+./train_model.py:172:1: W293 blank line contains whitespace
+./train_model.py:173:80: E501 line too long (86 > 79 characters)
+./train_model.py:174:80: E501 line too long (85 > 79 characters)
+./train_model.py:176:1: W293 blank line contains whitespace
+./train_model.py:180:1: E302 expected 2 blank lines, found 1
+./train_model.py:187:1: W293 blank line contains whitespace
+./train_model.py:189:80: E501 line too long (98 > 79 characters)
+./train_model.py:190:80: E501 line too long (89 > 79 characters)
+./train_model.py:191:1: W293 blank line contains whitespace
+./train_model.py:193:80: E501 line too long (100 > 79 characters)
+./train_model.py:197:1: W293 blank line contains whitespace
+./train_model.py:201:1: E305 expected 2 blank lines after class or function definition, found 1
+./graph_builder.py:19:80: E501 line too long (86 > 79 characters)
+./graph_builder.py:20:80: E501 line too long (92 > 79 characters)
+./graph_builder.py:33:80: E501 line too long (94 > 79 characters)
+./graph_builder.py:36:80: E501 line too long (99 > 79 characters)
+./graph_builder.py:49:80: E501 line too long (87 > 79 characters)
+./graph_builder.py:58:80: E501 line too long (81 > 79 characters)
+./graph_builder.py:63:80: E501 line too long (91 > 79 characters)
+./graph_builder.py:65:80: E501 line too long (82 > 79 characters)
+./graph_builder.py:102:11: W292 no newline at end of file
+./main.py:3:80: E501 line too long (102 > 79 characters)
+./main.py:53:80: E501 line too long (82 > 79 characters)
+./main.py:56:80: E501 line too long (82 > 79 characters)
+./main.py:57:80: E501 line too long (80 > 79 characters)
+./main.py:58:80: E501 line too long (84 > 79 characters)
+./main.py:103:11: W292 no newline at end of file
+./code_quality/CodeQualityChecker.py:5:80: E501 line too long (93 > 79 characters)
+./code_quality/CodeQualityChecker.py:6:80: E501 line too long (108 > 79 characters)
+./code_quality/CodeQualityChecker.py:24:80: E501 line too long (82 > 79 characters)
+./code_quality/CodeQualityChecker.py:46:80: E501 line too long (85 > 79 characters)
+./code_quality/CodeQualityChecker.py:49:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:55:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:59:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:67:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:76:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:80:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:84:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:88:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:92:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:96:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:100:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:104:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:108:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:112:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:116:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:120:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:120:80: E501 line too long (80 > 79 characters)
+./code_quality/CodeQualityChecker.py:123:80: E501 line too long (90 > 79 characters)
+./code_quality/CodeQualityChecker.py:125:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:127:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:133:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:137:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:139:80: E501 line too long (83 > 79 characters)
+./code_quality/CodeQualityChecker.py:142:1: E302 expected 2 blank lines, found 1
+./code_quality/CodeQualityChecker.py:144:80: E501 line too long (92 > 79 characters)
+./code_quality/CodeQualityChecker.py:146:80: E501 line too long (86 > 79 characters)
+./code_quality/CodeQualityChecker.py:151:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:153:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:156:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:160:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:162:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:165:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:168:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:171:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:174:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:177:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:180:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:183:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:186:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:188:80: E501 line too long (87 > 79 characters)
+./code_quality/CodeQualityChecker.py:190:1: W293 blank line contains whitespace
+./code_quality/CodeQualityChecker.py:192:1: W293 blank line contains whitespace
+
+
+PYDOCSTYLE Results (Exit Code: 1):
+----------------------------------------
+./embedding_extractor.py:2 at module level:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./embedding_extractor.py:14 in public class `GATEncoder`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./embedding_extractor.py:14 in public class `GATEncoder`:
+        D204: 1 blank line required after class docstring (found 0)
+./embedding_extractor.py:17 in public method `__init__`:
+        D107: Missing docstring in __init__
+./embedding_extractor.py:24 in public method `forward`:
+        D102: Missing docstring in public method
+./embedding_extractor.py:92 in public function `main`:
+        D103: Missing docstring in public function
+./build_test_graph.py:1 at module level:
+        D100: Missing docstring in public module
+./build_test_graph.py:74 in public function `main`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./build_test_graph.py:74 in public function `main`:
+        D401: First line should be in imperative mood; try rephrasing (found 'Main')
+./train_model.py:21 in public function `load_data`:
+        D205: 1 blank line required between summary line and description (found 0)
+./train_model.py:68 in public function `split_data`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:77 in public function `cross_validate_model`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:89 in public function `perform_random_search`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:126 in public function `train_xgboost`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:151 in public function `save_model`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:158 in public function `train_ml_model`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./train_model.py:158 in public function `train_ml_model`:
+        D401: First line should be in imperative mood; try rephrasing (found 'Main')
+./train_model.py:181 in public function `main`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./graph_builder.py:2 at module level:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./graph_builder.py:82 in public function `main`:
+        D103: Missing docstring in public function
+./main.py:2 at module level:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./main.py:22 in public function `run_full_pipeline`:
+        D200: One-line docstring should fit on one line with quotes (found 3)
+./main.py:42 in public function `main`:
+        D103: Missing docstring in public function
+./code_quality/CodeQualityChecker.py:2 at module level:
+        D400: First line should end with a period (not 'r')
+./code_quality/CodeQualityChecker.py:143 in public function `main`:
+        D401: First line should be in imperative mood; try rephrasing (found 'Main')
+
+
+BANDIT Results (Exit Code: 1):
+----------------------------------------
+[main]	INFO	profile include tests: None
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.12.10
+Run started:2025-06-05 01:26:49.897774
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: ././code_quality/CodeQualityChecker.py:17:0
+16	import sys
+17	import subprocess
+18	import argparse
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: ././code_quality/CodeQualityChecker.py:32:17
+31	    try:
+32	        result = subprocess.run(
+33	            cmd,
+34	            cwd=cwd,
+35	            stdout=subprocess.PIPE,
+36	            stderr=subprocess.STDOUT,
+37	            text=True,
+38	            check=False
+39	        )
+40	        return result.returncode, result.stdout
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: ././embedding_extractor.py:50:17
+49	    # Load graph data
+50	    data: Data = torch.load(graph_file)
+51	    x, edge_index = data.x, data.edge_index
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 583
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 2
+		Medium: 1
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 3
+Files skipped (0):
+
+
+
+==================================================
+Total tools with issues: 7 out of 7
+==================================================
