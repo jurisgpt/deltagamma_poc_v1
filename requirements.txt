@@ -33,6 +33,6 @@ torch-geometric==2.6.1
 tqdm==4.67.1
 typing_extensions==4.12.2
 tzdata==2025.1
-urllib3==2.3.0
+urllib3==2.4.0
 xgboost==2.1.4
 yarl==1.18.3
